@@ -76,10 +76,10 @@
                 </li>
                 <li class="SignOut">
                     <a href="#">
-                        <i class="fa fa-power-off"></i> Sign Out
+                        <i class="fa fa-power-off" id="faSignOut"></i> Sign Out
                     </a>
                 </li>
-
+      
             </ul>
         </div>
         <!-- Content -->
@@ -87,21 +87,29 @@
             <nav class="navbar navbar-default" style="background-color:#eceff1">
                 <div class="container-fluid" >
                     <ul class="nav navbar-nav navbar-right">
-                                   
+
+                        <li>
+                            <form method="get" action="/search" id="search">
+                                <input name="q" type="text" size="40" placeholder="Search..." />
+                            </form>
+                        </li>
                         <li>
                             <a href="#">
-                                <i class="fas fa-bell" style="font-size:24px"></i>
+                                <i class="fas fa-bell" style="font-size:20px" > </i>
                             </a>
                         </li>
                         <li id="HelloUser">
                             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                         </li>
+
+
+
                     </ul>
                 </div>
             </nav>
 
             <div class="container-fluid">
-                <div class="container body-content">
+                <div class="container body-content" id="bodyContent">
                     @RenderBody()
                     <hr />
                 </div>
