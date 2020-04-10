@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -6,9 +7,16 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
     <link rel="stylesheet" href="~/Content/CSS/SideBar.css" />
+    <link  rel="stylesheet" href="~/Content/CSS/SearchBar.css" />
+    
+
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-   
+
+
+
 
 </head>
 <body>
@@ -48,7 +56,13 @@
 
                 <li>
                     <a href="#">
-                        <i class="fa fa-user"></i> User Profile
+                        <i class="fa fa-users"></i> My Team
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fas fa-user-cog"></i> User Profile
                     </a>
                 </li>
                 <li class="SignOut">
@@ -61,12 +75,13 @@
         </div>
         <!-- Content -->
         <div id="content">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
+            <nav class="navbar navbar-default" style="background-color:#eceff1">
+                <div class="container-fluid" >
                     <ul class="nav navbar-nav navbar-right">
+                                   
                         <li>
                             <a href="#">
-                                <i class="zmdi zmdi-notifications text-danger"></i>
+                                <i class="fas fa-bell" style="font-size:24px"></i>
                             </a>
                         </li>
                         <li><a href="#">Test User</a></li>

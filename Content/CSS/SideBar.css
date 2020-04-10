@@ -1,6 +1,8 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
 
 body {
+    padding-top: 0px;
+    padding-bottom: 0px;
     overflow-x: hidden;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
@@ -63,10 +65,10 @@ body {
     background: none;
     border-bottom: 1px solid #455A64;
     color: #CFD8DC;
-    font-size: 15px;
+    font-size: 18px;
     margin-right: 10%;
     margin-left: 10%;
-    height: 47px;
+    height: 55px;
     line-height:30px;
 }
 
@@ -88,3 +90,17 @@ body {
     font-size:17px;
     border-bottom:none;
 }
+
+    #content .navbar navbar-default {
+        background-color: #cfd8dc;
+        width:600px;
+    }
+
+body {
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555555;
+    background-color: #eceff1;
+}
+
