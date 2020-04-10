@@ -50,7 +50,7 @@
 
                 <li>
                     <a href="#">
-                        <i class="fa fa-tasks"></i> Assignments
+                        <i class="fas fa-tasks"></i> Assignments
                     </a>
                 </li>
 
@@ -84,7 +84,9 @@
                                 <i class="fas fa-bell" style="font-size:24px"></i>
                             </a>
                         </li>
-                        <li><a href="#">Test User</a></li>
+                        <li id="HelloUser">
+                            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                        </li>
                     </ul>
                 </div>
             </nav>

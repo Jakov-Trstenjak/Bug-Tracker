@@ -96,6 +96,11 @@ body {
         width:600px;
     }
 
+    #HelloUser{
+        font-size:18px;
+        margin-right:30px;
+    }
+
 body {
     font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
