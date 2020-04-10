@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -6,79 +7,99 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
     <link rel="stylesheet" href="~/Content/CSS/SideBar.css" />
+    <link  rel="stylesheet" href="~/Content/CSS/SearchBar.css" />
+    
+
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-
-
+    <!-- TO get GitHub avatar just apend .png to the profile link.--> 
     <div id="viewport">
         <!-- Sidebar -->
         <div id="sidebar">
             <header>
-                <a href="#">Bug Tracker</a>
+                <div>
+                    <a href="#">Bug Tracker</a>
+                </div>
+
             </header>
+
+            <div>
+                <img src="https://github.com/Jakov-Trstenjak.png" alt="Avatar" id="Avatar" >
+            </div>
+
             <ul class="nav">
+                
+                
                 <li>
                     <a href="#">
-                        <i class="zmdi zmdi-view-dashboard"></i> Dashboard
+                        <i class="fa fa-dashboard"></i> Dashboard
                     </a>
                 </li>
+
+
                 <li>
                     <a href="#">
-                        <i class="zmdi zmdi-link"></i> Shortcuts
+                        <i class="fa fa-bug"></i> Report a Bug
                     </a>
                 </li>
+
                 <li>
                     <a href="#">
-                        <i class="zmdi zmdi-widgets"></i> Overview
+                        <i class="fa fa-ticket"></i> My Tickets
                     </a>
                 </li>
+
                 <li>
                     <a href="#">
-                        <i class="zmdi zmdi-calendar"></i> Events
+                        <i class="fas fa-tasks"></i> Assignments
                     </a>
                 </li>
+
                 <li>
                     <a href="#">
-                        <i class="zmdi zmdi-info-outline"></i> About
+                        <i class="fa fa-users"></i> My Team
                     </a>
                 </li>
+
                 <li>
                     <a href="#">
-                        <i class="zmdi zmdi-settings"></i> Services
+                        <i class="fas fa-user-cog"></i> User Profile
                     </a>
                 </li>
-                <li>
+                <li class="SignOut">
                     <a href="#">
-                        <i class="zmdi zmdi-comment-more"></i> Contact
+                        <i class="fa fa-power-off"></i> Sign Out
                     </a>
                 </li>
+
             </ul>
         </div>
         <!-- Content -->
         <div id="content">
-            
+            <nav class="navbar navbar-default" style="background-color:#eceff1">
+                <div class="container-fluid" >
+                    <ul class="nav navbar-nav navbar-right">
+                                   
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-bell" style="font-size:24px"></i>
+                            </a>
+                        </li>
+                        <li id="HelloUser">
+                            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
             <div class="container-fluid">
                 <div class="container body-content">
                     @RenderBody()
