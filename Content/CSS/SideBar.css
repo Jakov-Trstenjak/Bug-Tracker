@@ -48,7 +48,7 @@ body {
         font-size: 26px;
         line-height: 52px;
         text-align: center;
-        border-bottom: 7px solid #263238;
+    
     }
 
 #sidebar header a {
@@ -57,9 +57,10 @@ body {
     text-decoration: none;
 }
 
-#sidebar header a:hover {
-    color: #fff;
-}
+    #sidebar header a:hover {
+        color: #fff;
+        text-shadow: 2px 2px #fff;
+    }
 
 #sidebar .nav {
 }

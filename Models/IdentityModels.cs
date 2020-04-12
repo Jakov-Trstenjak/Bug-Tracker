@@ -20,8 +20,8 @@ namespace Bug_Tracker.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Priority> Priorities { get; set; }
-        public DbSet<Ticket> Tickets { get; set; }
+       
+        //if I add DbSet<User>... here then it throws an error ->login and registration.
         
 
         public ApplicationDbContext()
