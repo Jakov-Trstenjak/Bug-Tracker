@@ -20,6 +20,10 @@ namespace Bug_Tracker.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Priority> Priorities { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
+        
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

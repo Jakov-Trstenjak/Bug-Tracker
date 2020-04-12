@@ -9,9 +9,22 @@ namespace Bug_Tracker
 {
     public class RouteConfig
     {
+        
+
         public static void RegisterRoutes(RouteCollection routes)
         {
+
+            
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapMvcAttributeRoutes();
+
+            routes.MapRoute(
+                name: "UserRoute",
+                url: "User/{Username}/{action}/{id}"
+                );
+
+
 
             routes.MapRoute(
                 name: "Default",
