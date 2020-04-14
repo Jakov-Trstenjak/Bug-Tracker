@@ -190,7 +190,7 @@
     <Compile Include="ViewModels\NewTicketViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Images\antivirus-13-512.png" />
+    <Content Include="Content\Images\antivirus.png" />
     <Content Include="Content\Images\background-wall.png" />
     <Content Include="Content\CSS\Bootstrap-CSS\bootstrap-lumen.css" />
     <Content Include="Content\CSS\Bootstrap-CSS\bootstrap-theme.css" />

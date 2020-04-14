@@ -58,7 +58,7 @@ a:focus {
 
     a:hover {
         text-decoration:none;
-        text-shadow: 0.6px 0.6px #607d8b;
+        text-shadow: 0.4px 0.4px #607d8b;
         color: #37474f;
     }
 
@@ -179,7 +179,7 @@ iframe {
 .wrap-login100 {
     width: 900px;
     background: #eceff1;
-    border-radius: 10px;
+    border-radius: 20px;
     overflow: hidden;
     display: -webkit-box;
     display: -webkit-flex;
