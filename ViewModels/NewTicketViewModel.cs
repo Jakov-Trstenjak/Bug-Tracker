@@ -9,16 +9,12 @@ namespace Bug_Tracker.ViewModels
     public class NewTicketViewModel
     {
         public  Ticket Ticket;
-        public List<String> Priorities = new List<String>();
+
+        public List<Priority> Priorities;
+
 
         
 
-        public void addPriorities()
-        {
-            Priorities.Add("Niski");
-            Priorities.Add("Srednji");
-            Priorities.Add("Visoki");
-            Priorities.Add("Vrlo visoki");
-        }
+    
     }
 }

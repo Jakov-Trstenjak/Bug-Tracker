@@ -27,7 +27,7 @@ namespace Bug_Tracker.Models
 
         public string BugID { get; set; }
 
-        public string Priority { get; set; }
+        public Priority  Priority { get; set; }
 
 
     }

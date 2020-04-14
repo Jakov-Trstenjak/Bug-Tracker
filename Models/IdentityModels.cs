@@ -20,6 +20,10 @@ namespace Bug_Tracker.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+       
+        //if I add DbSet<User>... here then it throws an error ->login and registration.
+        
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
