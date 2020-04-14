@@ -199,6 +199,7 @@
     <Content Include="Content\CSS\Bootstrap-CSS\bootstrap.min.css" />
     <Content Include="Content\CSS\SideBar.css" />
     <Content Include="Content\Images\Bug Tracker.jpg" />
+    <Content Include="Content\Images\ImageOfBug.png" />
     <Content Include="Content\LoginPage\css\main.css" />
     <Content Include="Content\LoginPage\css\util.css" />
     <Content Include="Content\LoginPage\fonts\font-awesome-4.7.0\css\font-awesome.css" />
