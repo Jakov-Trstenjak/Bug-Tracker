@@ -46,21 +46,22 @@ body {
     #sidebar header {
         background-color: #263238;
         font-size: 26px;
-        line-height: 52px;
+        line-height: 55px;
         text-align: center;
     
     }
 
-#sidebar header a {
-    color: #fff;
-    display: block;
-    text-decoration: none;
-}
+        #sidebar header a {
+            color: #fff;
+            display: block;
+            text-decoration: none;
+           
+        }
 
-    #sidebar header a:hover {
-        color: #fff;
-        text-shadow: 2px 2px #fff;
-    }
+            #sidebar header a:hover {
+                color: #fff;
+               
+           }
 
 #sidebar .nav {
 }
@@ -115,10 +116,10 @@ body {
     display:block;
     margin-left:auto;
     margin-right:auto;
-    margin-top:20px;
-    margin-bottom:20px;
+    margin-top:40px;
+    margin-bottom:40px;
     border-radius: 50%;
-    width:125px;
+    width:150px;
 }
 
 #search {
