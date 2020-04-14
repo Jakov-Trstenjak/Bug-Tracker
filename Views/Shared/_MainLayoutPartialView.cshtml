@@ -36,8 +36,8 @@
             </div>
 
             <ul class="nav">
-                
-                
+
+
                 <li>
                     <a href="#">
                         <i class="fa fa-dashboard"></i> Dashboard
@@ -74,13 +74,23 @@
                         <i class="fas fa-user-cog"></i> User Profile
                     </a>
                 </li>
-                <li class="SignOut">
-                    <a href="#">
-                        <i class="fa fa-power-off" id="faSignOut"></i> Sign Out
-                    </a>
+
+                <li class="SignOut" id="removeLine" >
+                   
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <a href="javascript:document.getElementById('logoutForm').submit()" id="signOut">
+                            <i class="fa fa-power-off" id="faSignOut"></i>Sign Out
+                        </a>
+
+                    }
+
                 </li>
-      
-            </ul>
+
+
+             </ul>
         </div>
         <!-- Content -->
         <div id="content">
