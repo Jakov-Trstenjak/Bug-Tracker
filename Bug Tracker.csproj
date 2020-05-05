@@ -190,7 +190,6 @@
     <Compile Include="ViewModels\NewTicketViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Images\antivirus.png" />
     <Content Include="Content\CSS\Bootstrap-CSS\bootstrap-lumen.css" />
     <Content Include="Content\CSS\Bootstrap-CSS\bootstrap-theme.css" />
     <Content Include="Content\CSS\Bootstrap-CSS\bootstrap-theme.min.css" />
@@ -198,7 +197,6 @@
     <Content Include="Content\CSS\Bootstrap-CSS\bootstrap.min.css" />
     <Content Include="Content\CSS\SideBar.css" />
     <Content Include="Content\Images\BugTrackerFinal.png" />
-    <Content Include="Content\Images\ImageOfBug.png" />
     <Content Include="Content\Images\Registration3.png" />
     <Content Include="Content\LoginPage\css\main.css" />
     <Content Include="Content\LoginPage\css\util.css" />
