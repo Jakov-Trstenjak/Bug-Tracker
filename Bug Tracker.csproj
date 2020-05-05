@@ -363,6 +363,7 @@
     <Content Include="Views\User\MyTickets.cshtml" />
     <Content Include="Views\User\UserProfile.cshtml" />
     <Content Include="Views\Shared\_LoginForm.cshtml" />
+    <Content Include="Views\Shared\_RegisterForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
