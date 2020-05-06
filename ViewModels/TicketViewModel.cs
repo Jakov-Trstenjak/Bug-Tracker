@@ -8,9 +8,22 @@ namespace Bug_Tracker.ViewModels
 {
     public class TicketViewModel
     {
-        public IEnumerable<string> priorityNames { get; set; }
-        public Ticket ticket { get; set; }
+        public TicketViewModel()
+        {
+
+        }
+        public TicketViewModel(IEnumerable<Priority> Priorities, Ticket Ticket)
+        {
+            this.Ticket = Ticket;
+            this.Priorities = Priorities;
+
+        }
+
+        public IEnumerable<Priority> Priorities { get; set; }
+        public Ticket Ticket { get; set; }
 
 
     }
+
+
 }
