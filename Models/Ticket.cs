@@ -18,17 +18,10 @@ namespace Bug_Tracker.Models
         public  string UserID { get; set; }
         
 
-        [Display(Name = "Describe occured problem")]
-        public string Description { get; set; }
-
         public string Date { get; set; }
 
         public string ImageURL { get; set; }
 
-        public string BugID { get; set; }
-
-        public Priority  Priority { get; set; }
-
-
+        public Bug Bug { get; set; }
     }
 }
