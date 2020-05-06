@@ -23,7 +23,7 @@ namespace Bug_Tracker.Controllers
         {
             return View();
         }
-        public ActionResult MyTickets(string Username)
+        public ActionResult MyTickets()
         {
             return View();
         }
@@ -38,6 +38,7 @@ namespace Bug_Tracker.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult ReportABug()
         {
             var ticketViewModel = new TicketViewModel {
@@ -50,6 +51,14 @@ namespace Bug_Tracker.Controllers
             return View(ticketViewModel);
         }
 
+        [HttpPost]
+        public ActionResult ReportABug(Ticket ticket)
+        {
+            System.Diagnostics.Debug.WriteLine("I'm here!");
+            return RedirectToAction("MyTickets","User");
+        }
+
+    
 
 
 

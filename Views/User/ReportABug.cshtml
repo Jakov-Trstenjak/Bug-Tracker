@@ -1,20 +1,33 @@
 ﻿@using Bug_Tracker.ViewModels
 @model TicketViewModel
-    @{
-        ViewBag.Title = "ReportABug";
-        Layout = "~/Views/Shared/_MainLayoutPartialView.cshtml";
-    }
+@{
+    ViewBag.Title = "ReportABug";
+    Layout = "~/Views/Shared/_MainLayoutPartialView.cshtml";
+}
 
-    <h2>Report A Bug</h2>
+<h2>Report A Bug</h2>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.ticket.TicketTitle)
-        @Html.TextBoxFor(m => m.ticket.TicketTitle, new { @class="form-control"})
+<div class="form-group">
+    @Html.LabelFor(m => m.ticket.TicketTitle)
+    @Html.TextBoxFor(m => m.ticket.TicketTitle, new { @class = "form-control" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.ticket.Description)
+    @Html.TextAreaFor(m => m.ticket.Description, new { @class = "form-control" })
+
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.ticket.Priority)
+    @Html.DropDownListFor(m => m.ticket.Priority, new SelectList(Model.priorityNames), "Select priority", new { @class = "form-control" })
+</div>
+
+@using (Html.BeginForm("ReportABug", "User", FormMethod.Post, new { id = "submit" }))
+{
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </div>
-    
-    <div class="form-group" >
-        @Html.LabelFor(m => m.ticket.Priority)
-        @Html.DropDownListFor(m => m.ticket.Priority,new SelectList(Model.priorityNames) ,"Select priority",new { @class = "form-control" })
 
-    </div>
+}
 

@@ -23,7 +23,7 @@ namespace Bug_Tracker.Models
             using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
             {
                 connection.Open();
-                var priority = connection.Query<string>("SELECT nazivPrioritet FROM public.\"Prioritet\"");
+                var priority = connection.Query<string>("SELECT  \"nazivPrioritet\" FROM Public.\"Prioritet\"");
                 priorityNames = priority.ToList();
             };
 
