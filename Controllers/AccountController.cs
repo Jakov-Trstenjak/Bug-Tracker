@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Bug_Tracker.Models;
 
+
 namespace Bug_Tracker.Controllers
 {
     [Authorize]
@@ -149,12 +150,15 @@ namespace Bug_Tracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            System.Diagnostics.Debug.WriteLine("Post register!");
             if (ModelState.IsValid)
             {
+                System.Diagnostics.Debug.WriteLine("Model state is valid.");
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    System.Diagnostics.Debug.WriteLine("Result succeeded");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -165,6 +169,7 @@ namespace Bug_Tracker.Controllers
 
                     return RedirectToAction("Dashboard", "User",(string)model.Email);
                 }
+     
                 AddErrors(result);
             }
 
