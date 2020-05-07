@@ -14,6 +14,9 @@ namespace Bug_Tracker.Models
         static int nextID;
         public int TicketID { get; set; }
 
+        [Required]
+        [MaxLength(50)]
+        [MinLength(3)]
         [Display(Name ="Title")]
         public string TicketTitle { get; set; }
 

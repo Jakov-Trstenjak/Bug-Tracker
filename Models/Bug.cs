@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Threading;
+using System.ComponentModel.DataAnnotations;
 
 namespace Bug_Tracker.Models
 {
@@ -12,6 +13,7 @@ namespace Bug_Tracker.Models
 
         public  int BugID { get; private set; }
     
+        [Required]
         public string Description { get; set; }
 
         public  int PriorityID { get; set; }
