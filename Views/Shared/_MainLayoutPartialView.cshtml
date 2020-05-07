@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using Bug_Tracker.Models
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,7 +109,7 @@
                             </a>
                         </li>
                         <li id="HelloUser">
-                            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                            @Html.ActionLink("Hello " + DapperORM.getUsername() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                         </li>
 
 

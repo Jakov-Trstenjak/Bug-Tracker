@@ -54,7 +54,7 @@ namespace Bug_Tracker.Controllers
         [HttpPost]
         public ActionResult CreateTicket(TicketViewModel TicketViewModel)
         {
-            System.Diagnostics.Debug.WriteLine("I'm here in CreateTicket!");
+            
             return RedirectToAction("MyTickets", "User");
 
         }

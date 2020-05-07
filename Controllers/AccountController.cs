@@ -69,17 +69,21 @@ namespace Bug_Tracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            System.Diagnostics.Debug.WriteLine("Entered Login!");
             if (!ModelState.IsValid)
             {
+                System.Diagnostics.Debug.WriteLine("Model is invalid!");
                 return View(model);
             }
 
+            System.Diagnostics.Debug.WriteLine("Model is valid!");
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
+                    System.Diagnostics.Debug.WriteLine("Sucess!");
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -87,6 +91,7 @@ namespace Bug_Tracker.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
+                    System.Diagnostics.Debug.WriteLine("Invalid login attempt.");
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
@@ -397,7 +402,7 @@ namespace Bug_Tracker.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         //
@@ -454,7 +459,7 @@ namespace Bug_Tracker.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Dashboard", "User", new { id=DapperORM.getUsername() });
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
