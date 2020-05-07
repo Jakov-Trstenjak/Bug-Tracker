@@ -172,7 +172,7 @@ namespace Bug_Tracker.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Dashboard", "User",(string)model.Email);
+                    return RedirectToAction("Dashboard", "User", new { id = DapperORM.getUsername() });
                 }
      
                 AddErrors(result);
