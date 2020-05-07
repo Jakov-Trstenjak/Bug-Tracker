@@ -46,16 +46,17 @@ namespace Bug_Tracker.Controllers
                 Ticket = new Ticket()
                 
             };
-           
-           
+
+         
             return View(ticketViewModel);
         }
 
         [HttpPost]
-        public ActionResult ReportABug(TicketViewModel Ticket)
+        public ActionResult CreateTicket(TicketViewModel TicketViewModel)
         {
-            System.Diagnostics.Debug.WriteLine("I'm here!");
-            return RedirectToAction("MyTickets","User");
+            System.Diagnostics.Debug.WriteLine("I'm here in CreateTicket!");
+            return RedirectToAction("MyTickets", "User");
+
         }
 
     

@@ -8,7 +8,7 @@
 <h2>Report A Bug</h2>
 
 
-@using (Html.BeginForm("ReportABug", "User", FormMethod.Post, new { id = "submit" }))
+@using (Html.BeginForm("CreateTicket", "User", FormMethod.Post, new { id = "submit" }))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Ticket.TicketTitle)
@@ -25,6 +25,7 @@
         @Html.LabelFor(m => m.Ticket.Bug.PriorityID)
         @Html.DropDownListFor(m => m.Ticket.Bug.PriorityID, new SelectList(Model.Priorities, "PriorityID", "PriorityName"), "Select priority", new { @class = "form-control" })
     </div>
+
     <div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
