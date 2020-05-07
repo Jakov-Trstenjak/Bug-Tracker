@@ -42,20 +42,21 @@ namespace Bug_Tracker.Controllers
         public ActionResult ReportABug()
         {
             var ticketViewModel = new TicketViewModel {
-                priorityNames = DapperORM.GetPriorityNames(),
-                ticket = new Ticket()
+                Priorities = DapperORM.GetPriority(),
+                Ticket = new Ticket()
                 
             };
-           
-           
+
+         
             return View(ticketViewModel);
         }
 
         [HttpPost]
-        public ActionResult ReportABug(Ticket ticket)
+        public ActionResult CreateTicket(TicketViewModel TicketViewModel)
         {
-            System.Diagnostics.Debug.WriteLine("I'm here!");
-            return RedirectToAction("MyTickets","User");
+            System.Diagnostics.Debug.WriteLine("I'm here in CreateTicket!");
+            return RedirectToAction("MyTickets", "User");
+
         }
 
     

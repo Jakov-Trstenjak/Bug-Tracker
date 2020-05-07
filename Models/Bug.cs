@@ -16,12 +16,13 @@ namespace Bug_Tracker.Models
 
         public  int PriorityID { get; set; }
 
-
         // auto-generate BugID
-        Bug()
+        public Bug()
         {
             BugID = Interlocked.Increment(ref nextID);
         }
-    
+  
+  
+
     }
 }

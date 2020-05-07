@@ -15,16 +15,28 @@ namespace Bug_Tracker.Models
     
     public static class DapperORM
     {
-
-        public static  List<string> GetPriorityNames()
+       
+        public static  List<Priority> GetPriority()
         {
-            var priorityNames = new List<string>();
+            var priorityNames = new List<Priority>();
 
             using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
             {
                 connection.Open();
-                var priority = connection.Query<string>("SELECT  \"nazivPrioritet\" FROM Public.\"Prioritet\"");
-                priorityNames = priority.ToList();
+                var priorityName = connection.Query<string>("SELECT  \"nazivPrioritet\" FROM Public.\"Prioritet\"");
+                
+                priorityName = priorityName.ToList();
+              
+                for(int i=0; i < 4; ++i)
+                {
+                    Priority prior = new Priority
+                    {
+                        PriorityID = i + 1,
+                        PriorityName = priorityName.ElementAt(i)
+                    };
+                    priorityNames.Add(prior);
+
+                }
             };
 
             return priorityNames;
