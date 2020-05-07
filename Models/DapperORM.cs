@@ -10,6 +10,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.Mvc.Ajax;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
+using Bug_Tracker.ViewModels;
 
 namespace Bug_Tracker.Models
 {
@@ -67,14 +68,31 @@ namespace Bug_Tracker.Models
             };
         }
 
-        public static void getTicketData()
+        public static List<MyTicketViewModel> getTicketData()
         {
+            List<MyTicketViewModel> myTickets;
+
             using (var connection = new NpgsqlConnection("Host=localhost;Username=postgres;Password=nikola000;Database=BugTrackerDB"))
             {
                 connection.Open();
-                var priority = connection.Query<Ticket>("SELECT listićID, korisnikID, opisProblema, slika, datum, pogreškaID FROM public.\"Listić\"");
+
+                string query = @"SELECT ""Listić"".""listićID"",  ""Korisnik"".""username"",""Listić"".""slika"",""Listić"".""datum"",""Listić"".""listićIme"", ""Pogreška"".""opisPogreška"",""Prioritet"".""nazivPrioritet""
+                                     FROM ""Listić"" INNER JOIN ""Pogreška""  
+                                     ON ""Listić"".""pogreskaID"" = ""Pogreška"".""pogreskaID""
+                                     INNER JOIN ""Prioritet""
+                                     ON ""Pogreška"".""prioritetID"" = ""Prioritet"".""prioritetID""
+                                     INNER JOIN ""Korisnik""
+                                     ON ""Listić"".""korisnikID"" = ""Korisnik"".""korisnikID""";
+
+                myTickets= (List<MyTicketViewModel>)connection.Query<MyTicketViewModel>(query);
+
+              
+            
             };
+            return myTickets;
         }
+
+
 
 
     }

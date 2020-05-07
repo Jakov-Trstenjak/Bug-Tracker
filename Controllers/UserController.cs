@@ -23,9 +23,11 @@ namespace Bug_Tracker.Controllers
         {
             return View();
         }
-        public ActionResult MyTickets()
+        public ActionResult MyTickets(string Username)
         {
-            return View();
+             List<MyTicketViewModel> myTickets = DapperORM.getTicketData();
+
+            return View(myTickets);
         }
 
         public ActionResult MyTeam(string Username)
@@ -52,10 +54,19 @@ namespace Bug_Tracker.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateTicket(TicketViewModel TicketViewModel)
+        public ActionResult CreateTicket(Ticket Ticket)
         {
+            if (!ModelState.IsValid)
+            {
+                var ticketViewModel = new TicketViewModel
+                {
+                    Priorities = DapperORM.GetPriority(),
+                    Ticket = Ticket
+                };
+                return View("ReportABug", ticketViewModel);
+            }
             
-            return RedirectToAction("MyTickets", "User");
+            return RedirectToAction("MyTickets", "User", new { id = DapperORM.getUsername() });
 
         }
 
