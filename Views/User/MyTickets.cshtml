@@ -21,7 +21,7 @@
 
             <ul id="row">
                 <li id="cardLink">
-                    <a href="@Url.Action("ViewTicket", "MyTickets",new { id = item.listićID })">
+                    <a href="@Url.Action("TicketDetails", "MyTickets",new { id = item.listićID })">
                         <div class="card">
                             <div class="card-text">
                                 <span class="date">
@@ -71,7 +71,7 @@
                 <td>@item.nazivPrioritet</td>
                 <td>@item.datum</td>
                 <td>
-                    <a href="@Url.Action("ViewTicket", "MyTickets",new { id = item.listićID })">
+                    <a href="@Url.Action("TicketDetails", "MyTickets",new { id = item.listićID })">
                         <div>
                             More details
                         </div>

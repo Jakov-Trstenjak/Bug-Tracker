@@ -59,6 +59,16 @@ namespace Bug_Tracker.Models
             return username;
         }
 
+        public static void saveTicket(Ticket Ticket)
+        {
+            using (var connection = new NpgsqlConnection("Host=localhost;Username=postgres;Password=nikola000;Database=BugTrackerDB"))
+            {
+                connection.Open();
+                var user = HttpContext.Current.User;
+                var priority = connection.Query<Team>("INSERT INTO public.\"Listić\" VALUES(" +Ticket.TicketID +"," +user.Identity.GetUserName()+",'"+Ticket.ImageURL+"',"+Ticket.Bug.BugID+",'"+Ticket.TicketTitle+"','"+Ticket.Time+"')");
+                System.Diagnostics.Debug.WriteLine("hi");
+            };
+        }
         public static void getTeamData()
         {
             using (var connection = new NpgsqlConnection("Host=localhost;Username=postgres;Password=nikola000;Database=BugTrackerDB"))
