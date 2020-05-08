@@ -21,7 +21,7 @@
 
             <ul id="row">
                 <li id="cardLink">
-                    <a href="@Url.Action("Edit", "MyTickets",new { id = item.listićID })">
+                    <a href="@Url.Action("ViewTicket", "MyTickets",new { id = item.listićID })">
                         <div class="card">
                             <div class="card-text">
                                 <span class="date">
@@ -56,23 +56,24 @@
 
 <div>
     <table id="myTable">
-        <tr>
-            <th>Ticket ID</th>
-            <th>Title</th>
-            <th>Submitter</th>
-            <th>Created</th>
+        <tr id="headerOfTable">
+            <th>TICKET ID</th>
+            <th>TITLE</th>
+            <th>PRIORITY</th>
+            <th>CREATED</th>
         </tr>
         @foreach (var item in Model)
         {
+
             <tr>
                 <td>@item.listićID</td>
                 <td>@item.listićIme</td>
-                <td>@item.Username</td>
+                <td>@item.nazivPrioritet</td>
                 <td>@item.datum</td>
                 <td>
-                    <a href="@Url.Action("Edit", "MyTickets",new { id = item.listićID })">
+                    <a href="@Url.Action("ViewTicket", "MyTickets",new { id = item.listićID })">
                         <div>
-                            Edit Ticket
+                            More details
                         </div>
                     </a>
                 </td>

@@ -406,6 +406,7 @@
     <Content Include="Views\Shared\_RegisterForm.cshtml" />
     <Content Include="Views\User\ReportABug.cshtml" />
     <Content Include="Views\MyTickets\Edit.cshtml" />
+    <Content Include="Views\MyTickets\ViewTicket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

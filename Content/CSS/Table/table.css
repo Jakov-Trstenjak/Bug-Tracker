@@ -5,8 +5,8 @@
 }
 
 table a:visited {
-    color: #999999;
-    font-weight: bold;
+    color: #666677;
+    font-weight: 500;
     text-decoration: none;
 }
 
@@ -17,17 +17,16 @@ table a:hover {
 }
 
 table {
-    width:90%;
+    width: 90%;
     font-family: Roboto;
-    color: #667;
     font-size: 14px;
-    text-shadow: 1px 1px 0px #fff;
-    background: #eaebec;
-    margin-top:25px;
-    margin-left:6%;
-    margin-right:10%;
-    margin-bottom:10%;
+    background: #455a64;
+    margin-top: 25px;
+    margin-left: 6%;
+    margin-right: 10%;
+    margin-bottom: 10%;
     border: #ccc 1px solid;
+    border-radius:10px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -38,14 +37,12 @@ table {
 #tableHeader {
     background-color: #37474f;
 }
-    table th {
-        padding: 21px 25px 22px 25px;
-        border-top: 1px solid #fafafa;
-        border-bottom: 1px solid #e0e0e0;
-        background-color: #37474f;
-        background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
-        background: -moz-linear-gradient(top, #ededed, #ebebeb);
-    }
+table th {
+    padding: 21px 25px 22px 25px;
+    border-top: 1px solid #fafafa;
+    background-color: #455a64;
+    color:#fff;
+}
 
         table th:first-child {
             text-align: left;
@@ -66,7 +63,8 @@ table {
 
     table tr {
         text-align: left;
-        padding-left: 20px;
+        padding-left: 22px;
+        color:#333333;
     }
 
     table td:first-child {
@@ -87,8 +85,7 @@ table {
 
     table tr.even td {
         background: #f6f6f6;
-        background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
-        background: -moz-linear-gradient(top, #f8f8f8, #f6f6f6);
+        
     }
 
     table tr:last-child td {
@@ -118,4 +115,8 @@ table {
     }
     #cardLink :hover{
         text-decoration:none;
+    }
+
+    #headerOfTable{
+        font-weight:400;
     }
