@@ -8,20 +8,20 @@ namespace Bug_Tracker.ViewModels
 {
     public class MyTicketViewModel
     {
-        int listićID { get; set; }
+        public int listićID { get; set; }
 
-        string Username { get; set; }
+        public string Username { get; set; }
 
 
-        string slika { get; set; }
+        public string slika { get; set; }
 
-        string datum { get; set; }
+        public string datum { get; set; }
 
-        string listićIme{ get; set; }
+        public string listićIme{ get; set; }
       
-        string opisPogreška { get; set; }
+        public string opisPogreška { get; set; }
 
-        string nazivPrioritet { get; set; }
+        public string nazivPrioritet { get; set; }
 
     }
 }
