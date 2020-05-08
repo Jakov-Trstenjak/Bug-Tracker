@@ -9,38 +9,49 @@
 
 @if (Model != null)
 {
+    var counter = 0; // count to display only 3 tickets as cards, other tickets will be displayed as a table.
 
-
+    <h3>Latest Tickets</h3>
     foreach (var item in Model)
     {
-        string[] date = item.datum.Split(' ');
-        
-        <ul id="row">
-            <li>
-                <div class="card">
-                    <div class="card-text">
-                        <span class="date">
-                            <h2>@item.listićIme</h2>
-                            <p>@item.opisPogreška</p>
+        if (counter < 3)
+        {
+            counter++;
+            string[] date = item.datum.Split(' ');
+
+            <ul id="row">
+                <li>
+                    <div class="card">
+                        <div class="card-text">
+                            <span class="date">
+                                <h2>@item.listićIme</h2>
+                                <p>@item.opisPogreška</p>
+                        </div>
+                        <div class="card-stats">
+                            <div class="stat">
+                                <div class="value">Ticket ID</div>
+                                <div class="type" id="type">@item.listićID</div>
+                            </div>
+                            <div class="stat border">
+                                <div class="value">Priority</div>
+                                <div class="type" id="type">@item.nazivPrioritet</div>
+                            </div>
+                            <div class="stat">
+                                <div class="value">Date</div>
+                                <div class="type" id="type">@date[0]</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-stats">
-                        <div class="stat">
-                            <div class="value">Ticket ID</div>
-                            <div class="type" id="type">@item.listićID</div>
-                        </div>
-                        <div class="stat border">
-                            <div class="value">Priority</div>
-                            <div class="type" id="type">@item.nazivPrioritet</div>
-                        </div>
-                        <div class="stat">
-                            <div class="value">Date</div>
-                            <div class="type" id="type">@date[0]</div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-       
+                </li>
+            </ul>
+        }
+
+    }
+
+    <h3>All Tickets</h3>
+    var secondCounter = 0;
+    foreach (var item in Model)
+    {
 
     }
 }
