@@ -205,6 +205,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MyTicketsController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -233,6 +234,7 @@
     <Content Include="Content\CSS\Bootstrap-CSS\bootstrap.css" />
     <Content Include="Content\CSS\Bootstrap-CSS\bootstrap.min.css" />
     <Content Include="Content\CSS\SideBar.css" />
+    <Content Include="Content\CSS\Table\table.css" />
     <Content Include="Content\Images\BugTrackerFinal.png" />
     <Content Include="Content\Images\Registration3.png" />
     <Content Include="Content\LoginPage\css\main.css" />
@@ -403,6 +405,7 @@
     <Content Include="Views\Shared\_LoginForm.cshtml" />
     <Content Include="Views\Shared\_RegisterForm.cshtml" />
     <Content Include="Views\User\ReportABug.cshtml" />
+    <Content Include="Views\MyTickets\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

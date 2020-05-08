@@ -11,7 +11,7 @@
 {
     var counter = 0; // count to display only 3 tickets as cards, other tickets will be displayed as a table.
 
-    <h3>Latest Tickets</h3>
+    <h3>My Latest Tickets</h3>
     foreach (var item in Model)
     {
         if (counter < 3)
@@ -48,13 +48,40 @@
 
     }
 
-    <h3>All Tickets</h3>
-    var secondCounter = 0;
-    foreach (var item in Model)
-    {
 
-    }
+    <h3>All My Tickets</h3>
+
+<div>
+    <table id="myTable">
+        <tr>
+            <th>Ticket ID</th>
+            <th>Title</th>
+            <th>Submitter</th>
+            <th>Created</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.listićID</td>
+                <td>@item.listićIme</td>
+                <td>@item.Username</td>
+                <td>@item.datum</td>
+                <td>
+                    <a href="@Url.Action("Edit", "MyTickets",new { id = item.listićID })">
+                        <div>
+                            Edit Ticket
+                        </div>
+                    </a>
+                </td>
+                </tr>
+        }
+    </table>
+</div>
+    
+
+
 }
+
 
 
 
