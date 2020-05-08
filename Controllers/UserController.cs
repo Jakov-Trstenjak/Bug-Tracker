@@ -41,7 +41,7 @@ namespace Bug_Tracker.Controllers
         }
 
         [HttpGet]
-        public ActionResult ReportABug()
+        public ActionResult ReportABug(string username)
         {
             var ticketViewModel = new TicketViewModel {
                 Priorities = DapperORM.GetPriority(),
