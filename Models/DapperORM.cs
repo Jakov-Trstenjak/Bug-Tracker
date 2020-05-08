@@ -75,14 +75,15 @@ namespace Bug_Tracker.Models
             using (var connection = new NpgsqlConnection("Host=localhost;Username=postgres;Password=nikola000;Database=BugTrackerDB"))
             {
                 connection.Open();
-
+                var user = HttpContext.Current.User;
                 string query = @"SELECT ""Listić"".""listićID"",  ""Korisnik"".""username"",""Listić"".""slika"",""Listić"".""datum"",""Listić"".""listićIme"", ""Pogreška"".""opisPogreška"",""Prioritet"".""nazivPrioritet""
                                      FROM ""Listić"" INNER JOIN ""Pogreška""  
                                      ON ""Listić"".""pogreskaID"" = ""Pogreška"".""pogreskaID""
                                      INNER JOIN ""Prioritet""
                                      ON ""Pogreška"".""prioritetID"" = ""Prioritet"".""prioritetID""
                                      INNER JOIN ""Korisnik""
-                                     ON ""Listić"".""korisnikID"" = ""Korisnik"".""korisnikID""";
+                                     ON ""Listić"".""korisnikID"" = ""Korisnik"".""korisnikID""
+                                     WHERE ""Korisnik"".""email""= '"+user.Identity.GetUserName()+"'";
 
                 myTickets= (List<MyTicketViewModel>)connection.Query<MyTicketViewModel>(query);
 
