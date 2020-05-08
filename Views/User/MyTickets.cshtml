@@ -20,28 +20,31 @@
             string[] date = item.datum.Split(' ');
 
             <ul id="row">
-                <li>
-                    <div class="card">
-                        <div class="card-text">
-                            <span class="date">
-                                <h2>@item.listićIme</h2>
-                                <p>@item.opisPogreška</p>
+                <li id="cardLink">
+                    <a href="@Url.Action("Edit", "MyTickets",new { id = item.listićID })">
+                        <div class="card">
+                            <div class="card-text">
+                                <span class="date">
+                                    <h2>@item.listićIme</h2>
+                                    <p>@item.opisPogreška</p>
+                            </div>
+                            <div class="card-stats">
+                                <div class="stat">
+                                    <div class="value">Ticket ID</div>
+                                    <div class="type" id="type">@item.listićID</div>
+                                </div>
+                                <div class="stat border">
+                                    <div class="value">Priority</div>
+                                    <div class="type" id="type">@item.nazivPrioritet</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="value">Date</div>
+                                    <div class="type" id="type">@date[0]</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-stats">
-                            <div class="stat">
-                                <div class="value">Ticket ID</div>
-                                <div class="type" id="type">@item.listićID</div>
-                            </div>
-                            <div class="stat border">
-                                <div class="value">Priority</div>
-                                <div class="type" id="type">@item.nazivPrioritet</div>
-                            </div>
-                            <div class="stat">
-                                <div class="value">Date</div>
-                                <div class="type" id="type">@date[0]</div>
-                            </div>
-                        </div>
-                    </div>
+                    </a>
+                   
                 </li>
             </ul>
         }
