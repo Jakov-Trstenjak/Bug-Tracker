@@ -86,7 +86,9 @@ namespace Bug_Tracker.Models
                                      WHERE ""Korisnik"".""email""= '"+user.Identity.GetUserName()+"'";
 
                 myTickets= (List<MyTicketViewModel>)connection.Query<MyTicketViewModel>(query);
-
+                
+                //Reverse list so that the latest Tickets get displayed first
+                myTickets.Reverse();
               
             
             };
