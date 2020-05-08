@@ -13,5 +13,11 @@ namespace Bug_Tracker.Controllers
         {
             return View();
         }
+  
+        public ActionResult ViewTicket(int ID)
+        {
+            return View();
+        }
     }
+
 }
