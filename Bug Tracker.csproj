@@ -265,6 +265,7 @@
     <Content Include="Content\LoginPage\vendor\select2\select2.min.css" />
     <Content Include="Content\LoginPage\vendor\select2\select2.min.js" />
     <Content Include="Content\LoginPage\vendor\tilt\tilt.jquery.min.js" />
+    <Content Include="Content\TicketCard\Ticket.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
