@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="~/Content/TicketCard/Ticket.css" />
     <link rel="stylesheet" href="~/Content/CSS/Table/table.css" />
 
-  
+    <link rel="stylesheet" href="~/Content/CSS/TicketDetails.css" />
 
 
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
@@ -27,8 +27,8 @@
 
 </head>
 <body>
-    @{ string userName = DapperORM.getUsername();} 
-    <!-- TO get GitHub avatar just apend .png to the profile link.--> 
+    @{ string userName = DapperORM.getUsername();}
+    <!-- TO get GitHub avatar just apend .png to the profile link.-->
     <div id="viewport">
         <!-- Sidebar -->
         <div id="sidebar">
@@ -40,7 +40,7 @@
             </header>
 
             <div>
-                <img src="https://github.com/Jakov-Trstenjak.png" alt="Avatar" id="Avatar" >
+                <img src="https://github.com/Jakov-Trstenjak.png" alt="Avatar" id="Avatar">
             </div>
 
             <ul class="nav">
@@ -83,8 +83,8 @@
                     </a>
                 </li>
 
-                <li class="SignOut" id="removeLine" >
-                   
+                <li class="SignOut" id="removeLine">
+
                     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                     {
                         @Html.AntiForgeryToken()
@@ -98,12 +98,12 @@
                 </li>
 
 
-             </ul>
+            </ul>
         </div>
         <!-- Content -->
         <div id="content">
             <nav class="navbar navbar-default" style="background-color:#eceff1">
-                <div class="container-fluid" >
+                <div class="container-fluid">
                     <ul class="nav navbar-nav navbar-right">
 
                         <li>
@@ -113,7 +113,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <i class="fas fa-bell" style="font-size:20px" > </i>
+                                <i class="fas fa-bell" style="font-size:20px"> </i>
                             </a>
                         </li>
                         <li id="HelloUser">
@@ -134,10 +134,11 @@
             </div>
         </div>
     </div>
-   
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
+

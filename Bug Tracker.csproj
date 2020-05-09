@@ -235,6 +235,7 @@
     <Content Include="Content\CSS\Bootstrap-CSS\bootstrap.min.css" />
     <Content Include="Content\CSS\SideBar.css" />
     <Content Include="Content\CSS\Table\table.css" />
+    <Content Include="Content\CSS\TicketDetails.css" />
     <Content Include="Content\Images\BugTrackerFinal.png" />
     <Content Include="Content\Images\Registration3.png" />
     <Content Include="Content\LoginPage\css\main.css" />
@@ -407,6 +408,7 @@
     <Content Include="Views\User\ReportABug.cshtml" />
     <Content Include="Views\MyTickets\Edit.cshtml" />
     <Content Include="Views\MyTickets\TicketDetails.cshtml" />
+    <Content Include="Views\MyTickets\MyTicketsPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
