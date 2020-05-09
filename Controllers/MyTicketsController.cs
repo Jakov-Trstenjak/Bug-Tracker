@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bug_Tracker.Models;
+using Bug_Tracker.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,9 +17,10 @@ namespace Bug_Tracker.Controllers
         }
   
         //GET: User/Heklijo/MyTickets/TicketDetails/5
-        public ActionResult TicketDetails(int ID)
+        public ActionResult TicketDetails(int id)
         {
-            return View();
+            MyTicketViewModel model = DapperORM.getSingleTicketData(id);
+            return View(model);
         }
     }
 

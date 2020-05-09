@@ -148,8 +148,30 @@ namespace Bug_Tracker.Models
             };
             return myTickets;
         }
+        //+ "AND \"Pogreška\".\"pogreskaID\"="+id
 
+        public static MyTicketViewModel getSingleTicketData(int id)
+        {
+            List<MyTicketViewModel> myTickets;
 
+            using (var connection = new NpgsqlConnection("Host=localhost;Username=postgres;Password=nikola000;Database=BugTrackerDB"))
+            {
+                connection.Open();
+                var user = HttpContext.Current.User;
+                string query = @"SELECT ""Listić"".""listićID"",  ""Korisnik"".""username"",""Listić"".""slika"",""Listić"".""datum"",""Listić"".""listićIme"", ""Pogreška"".""opisPogreška"",""Prioritet"".""nazivPrioritet""
+                                     FROM ""Listić"" INNER JOIN ""Pogreška""  
+                                     ON ""Listić"".""pogreskaID"" = ""Pogreška"".""pogreskaID""
+                                     INNER JOIN ""Prioritet""
+                                     ON ""Pogreška"".""prioritetID"" = ""Prioritet"".""prioritetID""
+                                     INNER JOIN ""Korisnik""
+                                     ON ""Listić"".""korisnikID"" = ""Korisnik"".""korisnikID""
+                                     WHERE ""Korisnik"".""email""= '" + user.Identity.GetUserName() + "'" + "AND \"Pogreška\".\"pogreskaID\"=" + id;
+
+                myTickets = (List<MyTicketViewModel>)connection.Query<MyTicketViewModel>(query);
+
+            };
+            return myTickets.First();
+        }
         public static void saveUser(User newUser)
         {
             using (var connection = new NpgsqlConnection("Host=localhost;Username=postgres;Password=nikola000;Database=BugTrackerDB"))
