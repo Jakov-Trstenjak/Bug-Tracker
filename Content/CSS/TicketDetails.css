@@ -69,25 +69,25 @@
 .leftColumn {
 margin-left: 60px;
 float: left;
-width: 200px;
+width: 400px;
 }
 #left {
     margin-left: 60px;
     float: left;
-    width: 200px;
+    width: 400px;
 }
 
 .rightColumn {
     float: right;
     margin-right: 60px;
-    margin-left: 300px;
-    width: 200px;
+    margin-left: 100px;
+    width: 400px;
 }
 #rigth {
     float: right;
     margin-right: 60px;
-    margin-left: 300px;
-    width: 200px;
+    margin-left: 100px;
+    width: 400px;
 }
 
 .container {
