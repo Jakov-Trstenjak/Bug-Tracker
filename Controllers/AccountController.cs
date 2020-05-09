@@ -163,16 +163,23 @@ namespace Bug_Tracker.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    User newUser = new User
+                    {
+                        Username = model.Username,
+                        Password = model.Password,
+                        Email = model.Email,
+                        Avatar = "https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/user.png"
+                    };
                     System.Diagnostics.Debug.WriteLine("Result succeeded");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    
+                    DapperORM.saveUser(newUser);
                     return RedirectToAction("Dashboard", "User", new { id = DapperORM.getUsername() });
                 }
      

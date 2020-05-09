@@ -11,6 +11,7 @@ using System.Web.Mvc.Ajax;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Bug_Tracker.ViewModels;
+using System.Data.Entity.Core.Objects;
 
 namespace Bug_Tracker.Models
 {
@@ -43,6 +44,21 @@ namespace Bug_Tracker.Models
 
             return priorityNames;
             
+        }
+
+
+        public static int getUserCount()
+        {
+            int counter;
+            using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
+            {
+                connection.Open();
+                var user = HttpContext.Current.User;
+                var numberOfTickets = connection.Query<int>("SELECT COUNT(*) FROM public.\"Korisnik\"");
+                counter = numberOfTickets.First();
+            };
+
+            return counter;
         }
 
         public static int getTicketCount()
@@ -133,6 +149,18 @@ namespace Bug_Tracker.Models
             return myTickets;
         }
 
+
+        public static void saveUser(User newUser)
+        {
+            using (var connection = new NpgsqlConnection("Host=localhost;Username=postgres;Password=nikola000;Database=BugTrackerDB"))
+            {
+                connection.Open();
+
+                string query = @"INSERT INTO public.""Korisnik"" (""Avatar"",""korisnikID"",""username"",""lozinka"",""email"") VALUES('"+ newUser.Avatar+"',"+ newUser.UserID+",'"+newUser.Username+"','"+ newUser.Password+"','"+ newUser.Email+"')";
+                var saveUser = connection.Query<bool>(query);
+                
+            };
+        }
 
 
 
