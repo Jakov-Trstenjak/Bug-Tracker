@@ -9,7 +9,7 @@ namespace Bug_Tracker.Models
 {
     public class Bug
     {
-        static int nextID;
+        static int nextID=DapperORM.getTicketCount();
 
         public  int BugID { get; private set; }
     

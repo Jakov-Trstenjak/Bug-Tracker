@@ -45,6 +45,21 @@ namespace Bug_Tracker.Models
             
         }
 
+        public static int getTicketCount()
+        {
+            int counter;
+            using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
+            {
+                connection.Open();
+                var user = HttpContext.Current.User;
+                var numberOfTickets = connection.Query<int>("SELECT COUNT(*) FROM public.\"Listić\"");
+                counter = numberOfTickets.First();
+            };
+
+            return counter;
+        }
+
+
         public static string getUsername()
         {
             string username = "";
@@ -59,6 +74,26 @@ namespace Bug_Tracker.Models
             return username;
         }
 
+        public static void saveTicket(Ticket Ticket)
+        {
+            using (var connection = new NpgsqlConnection("Host=localhost;Username=postgres;Password=nikola000;Database=BugTrackerDB"))
+            {
+                connection.Open();
+                var user = HttpContext.Current.User;
+                var listOfUserID = connection.Query<int>("SELECT \"korisnikID\" FROM public.\"Korisnik\" WHERE \"email\"='"+user.Identity.GetUserName()+"'");
+                int userID = 0;
+                
+                foreach (var item in listOfUserID)
+                {
+                    userID = item;
+                }
+                
+                
+                var saveBug = connection.Query<string>("INSERT INTO public.\"Pogreška\" VALUES("+ Ticket.Bug.BugID+",'"+Ticket.Bug.Description+"',"+Ticket.Bug.PriorityID+")");
+                var saveTicket = connection.Query<Team>("INSERT INTO public.\"Listić\" VALUES(" +Ticket.TicketID +"," +userID+",'"+Ticket.ImageURL+"',"+Ticket.Bug.BugID+",'"+Ticket.TicketTitle+"','"+Ticket.Time+"')");
+                System.Diagnostics.Debug.WriteLine("hi");
+            };
+        }
         public static void getTeamData()
         {
             using (var connection = new NpgsqlConnection("Host=localhost;Username=postgres;Password=nikola000;Database=BugTrackerDB"))

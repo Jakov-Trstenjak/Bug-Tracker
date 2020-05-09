@@ -14,7 +14,8 @@ namespace Bug_Tracker.Controllers
             return View();
         }
   
-        public ActionResult ViewTicket(int ID)
+        //GET: User/Heklijo/MyTickets/TicketDetails/5
+        public ActionResult TicketDetails(int ID)
         {
             return View();
         }

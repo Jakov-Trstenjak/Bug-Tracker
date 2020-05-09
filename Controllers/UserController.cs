@@ -65,6 +65,7 @@ namespace Bug_Tracker.Controllers
                 };
                 return View("ReportABug", ticketViewModel);
             }
+            DapperORM.saveTicket(Ticket);
             
             return RedirectToAction("MyTickets", "User", new { id = DapperORM.getUsername() });
 
