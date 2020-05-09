@@ -31,9 +31,6 @@ namespace Bug_Tracker.Models
 
         public Ticket()
         {
-            TicketID =  Interlocked.Increment(ref nextTicketID);
-            TicketID--;
-
             Time = DateTime.Now.ToString(@"dd\/MM\/yyyy h\:mm tt");
             var user = HttpContext.Current.User;
             UserID = user.Identity.GetUserName();

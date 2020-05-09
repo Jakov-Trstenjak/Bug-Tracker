@@ -68,7 +68,10 @@ namespace Bug_Tracker.Models
                 connection.Open();
                 var user = HttpContext.Current.User;
                 var usernames   = connection.Query<string>("SELECT \"username\" FROM Public.\"Korisnik\" WHERE email = '"+ user.Identity.GetUserName()+"'");
-                username = usernames.First();
+                if (usernames.Any())
+                {
+                    username = usernames.First();
+                }
             };
 
             return username;
@@ -90,7 +93,7 @@ namespace Bug_Tracker.Models
                 
                 
                 var saveBug = connection.Query<string>("INSERT INTO public.\"Pogreška\" VALUES("+ Ticket.Bug.BugID+",'"+Ticket.Bug.Description+"',"+Ticket.Bug.PriorityID+")");
-                var saveTicket = connection.Query<Team>("INSERT INTO public.\"Listić\" VALUES(" +Ticket.TicketID +"," +userID+",'"+Ticket.ImageURL+"',"+Ticket.Bug.BugID+",'"+Ticket.TicketTitle+"','"+Ticket.Time+"')");
+                var saveTicket = connection.Query<Team>("INSERT INTO public.\"Listić\" VALUES(" +Ticket.Bug.BugID +"," +userID+",'"+Ticket.ImageURL+"',"+Ticket.Bug.BugID+",'"+Ticket.TicketTitle+"','"+Ticket.Time+"')");
                 System.Diagnostics.Debug.WriteLine("hi");
             };
         }
