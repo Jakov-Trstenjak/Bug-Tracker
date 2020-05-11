@@ -22,6 +22,7 @@ namespace Bug_Tracker.ViewModels
         public string opisPogreška { get; set; }
 
         public string nazivPrioritet { get; set; }
-
+        
+        public string nazivProjekta { get; set; }
     }
 }

@@ -413,6 +413,7 @@
     <Content Include="Views\MyTickets\TicketDetails.cshtml" />
     <Content Include="Views\MyTickets\MyTicketsPartialView.cshtml" />
     <Content Include="Views\Projects\ViewProjects.cshtml" />
+    <Content Include="Views\MyTickets\allTicketsForProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

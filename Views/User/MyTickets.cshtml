@@ -66,6 +66,7 @@
             <th>TITLE</th>
             <th>PRIORITY</th>
             <th>CREATED</th>
+            <th>PROJECT NAME</th>
         </tr>
         @foreach (var item in Model)
         {
@@ -75,6 +76,7 @@
                 <td>@item.listićIme</td>
                 <td>@item.nazivPrioritet</td>
                 <td>@item.datum</td>
+                <td>@item.nazivProjekta</td>
                 <td>
                     <a href="@Url.Action("TicketDetails", "MyTickets",new { id = item.listićID })">
                         <div>
