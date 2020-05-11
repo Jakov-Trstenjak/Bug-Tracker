@@ -15,7 +15,7 @@
             <th style="width:80px">ID</th>
             <th style="width:300px">TITLE</th>
             <th style="width:600px">DESCRIPTION</th>
-            <th style="width:130px">DATE</th>
+            <th style="width:130px">PROJECT STARTED</th>
             <th style="width:100px">TICKETS</th>
         </tr>
         @foreach (var item in Model)
@@ -30,7 +30,7 @@
                 <td>@datum[0]</td>
                 <td>
                     <a href="@Url.Action("allTicketsForProject", "MyTickets",new { id = item.projektID })">
-                        <div>
+                        <div style="text-align:center">
                             @item.brojListica
                         </div>
                     </a>

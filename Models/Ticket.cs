@@ -28,6 +28,7 @@ namespace Bug_Tracker.Models
         public string ImageURL { get; set; }
 
         [Required]
+        [Display(Name ="Projekt")]
         public int projektID { get; set; }
 
         public Bug Bug { get; set; }
