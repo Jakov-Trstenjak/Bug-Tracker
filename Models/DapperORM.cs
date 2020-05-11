@@ -122,6 +122,53 @@ namespace Bug_Tracker.Models
             };
         }
 
+        public static List<ProjectViewModel> getProjects()
+        {
+            var listOfProjects = new List<ProjectViewModel>();
+            using (var connection = new NpgsqlConnection("Host=localhost;Username=postgres;Password=nikola000;Database=BugTrackerDB"))
+            {
+                connection.Open();
+                listOfProjects = (List<ProjectViewModel>)connection.Query<ProjectViewModel>(@"SELECT ""Projekt"".""projektID"",""Projekt"".""opisProjekta"",""Projekt"".""nazivProjekta"",""Projekt"".""datumPokretanja"", count(""listićID"") AS ""brojListica""
+                                     FROM ""Projekt"" LEFT JOIN ""Listić""  
+                                     ON ""Projekt"".""projektID"" =""Listić"".""projektID"" 
+                                     GROUP BY ""Projekt"".""projektID""
+                                     ");
+                                    
+            };
+
+            listOfProjects.Reverse();
+            return listOfProjects;
+        }
+
+
+
+
+
+        public static List<MyTicketViewModel> getAllTickets()
+        {
+            List<MyTicketViewModel> myTickets;
+
+            using (var connection = new NpgsqlConnection("Host=localhost;Username=postgres;Password=nikola000;Database=BugTrackerDB"))
+            {
+                connection.Open();
+                var user = HttpContext.Current.User;
+                string query = @"SELECT ""Listić"".""listićID"",  ""Korisnik"".""username"",""Listić"".""slika"",""Listić"".""datum"",""Listić"".""listićIme"", ""Pogreška"".""opisPogreška"",""Prioritet"".""nazivPrioritet""
+                                     FROM ""Listić"" INNER JOIN ""Pogreška""  
+                                     ON ""Listić"".""pogreskaID"" = ""Pogreška"".""pogreskaID""
+                                     INNER JOIN ""Prioritet""
+                                     ON ""Pogreška"".""prioritetID"" = ""Prioritet"".""prioritetID""
+                                     INNER JOIN ""Korisnik""
+                                     ON ""Listić"".""korisnikID"" = ""Korisnik"".""korisnikID""";
+
+                myTickets = (List<MyTicketViewModel>)connection.Query<MyTicketViewModel>(query);
+
+                //Reverse list so that the latest Tickets get displayed first
+                myTickets.Reverse();
+
+
+            };
+            return myTickets;
+        }
         public static List<MyTicketViewModel> getTicketData()
         {
             List<MyTicketViewModel> myTickets;
@@ -183,6 +230,23 @@ namespace Bug_Tracker.Models
                 
             };
         }
+
+        public static List<string> getRoles()
+        {
+            var roleNames = new List<string>();
+
+            using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
+            {
+                connection.Open();
+                var priorityName = connection.Query<string>("SELECT  \"nazivUloga\" FROM Public.\"Uloga\"");
+
+            };
+
+            return roleNames;
+        }
+
+
+
 
 
 

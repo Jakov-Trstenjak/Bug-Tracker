@@ -1,0 +1,41 @@
+﻿
+@using Bug_Tracker.ViewModels
+@model List<ProjectViewModel>
+@{
+    ViewBag.Title = "ViewProjects";
+    Layout = "~/Views/Shared/_MainLayoutPartialView.cshtml";
+}
+
+<h2>Projects</h2>
+
+
+<div>
+    <table id="myTable" width="1300px">
+        <tr id="headerOfTable">
+            <th style="width:80px">ID</th>
+            <th style="width:300px">TITLE</th>
+            <th style="width:600px">DESCRIPTION</th>
+            <th style="width:130px">DATE</th>
+            <th style="width:100px">TICKETS</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+         
+            var datum = item.datumPokretanja.Split(' ');
+            
+            <tr>
+                <td>@item.projektID</td>
+                <td>@item.nazivProjekta</td>
+                <td>@item.opisProjekta</td>
+                <td>@datum[0]</td>
+                <td>
+                    <a href="@Url.Action("TicketDetails", "MyTickets",new { id = item.projektID })">
+                        <div>
+                            @item.brojListica
+                        </div>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
