@@ -46,6 +46,20 @@ namespace Bug_Tracker.Models
             
         }
 
+        public static List<Projekt> GetProjectsForReportABug()
+        {
+            var projectNames = new List<Projekt>();
+
+            using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
+            {
+                connection.Open();
+                projectNames = (List<Projekt>) connection.Query<Projekt>("SELECT  \"nazivProjekta\",\"projektID\" FROM Public.\"Projekt\"");
+            }
+            return projectNames;
+
+        }
+
+
 
         public static int getUserCount()
         {
@@ -109,7 +123,7 @@ namespace Bug_Tracker.Models
                 
                 
                 var saveBug = connection.Query<string>("INSERT INTO public.\"Pogreška\" VALUES("+ Ticket.Bug.BugID+",'"+Ticket.Bug.Description+"',"+Ticket.Bug.PriorityID+")");
-                var saveTicket = connection.Query<Team>("INSERT INTO public.\"Listić\" VALUES(" +Ticket.Bug.BugID +"," +userID+",'"+Ticket.ImageURL+"',"+Ticket.Bug.BugID+",'"+Ticket.TicketTitle+"','"+Ticket.Time+"')");
+                var saveTicket = connection.Query<Team>("INSERT INTO public.\"Listić\" VALUES(" +Ticket.Bug.BugID +"," +userID+",'"+Ticket.ImageURL+"',"+Ticket.Bug.BugID+",'"+Ticket.TicketTitle+"','"+Ticket.Time+"',"+Ticket.projektID+")");
                 System.Diagnostics.Debug.WriteLine("hi");
             };
         }

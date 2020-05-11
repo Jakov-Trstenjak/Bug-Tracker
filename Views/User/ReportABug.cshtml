@@ -24,9 +24,16 @@
 
     <div class="form-group">
         @Html.LabelFor(m => m.Ticket.Bug.PriorityID)
-        @Html.DropDownListFor(m => m.Ticket.Bug.PriorityID, new SelectList(Model.Priorities, "PriorityID", "PriorityName"), "Select priority", new { @class = "form-control" })
+        @Html.DropDownListFor(m => m.Ticket.Bug.PriorityID, new SelectList(Model.Priorities, "PriorityID", "PriorityName"), "Odaberi Prioritet", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Ticket.Bug.PriorityID)
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Ticket.projektID)
+        @Html.DropDownListFor(m => m.Ticket.projektID, new SelectList(Model.Projects, "projektID", "nazivProjekta"), "Odaberi Projekt", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Ticket.projektID)
+    </div>
+
 
     <div>
         <button type="submit" class="btn btn-primary">Submit</button>
