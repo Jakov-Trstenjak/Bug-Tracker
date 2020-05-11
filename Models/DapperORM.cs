@@ -204,12 +204,13 @@ namespace Bug_Tracker.Models
                                      ON ""Listić"".""korisnikID"" = ""Korisnik"".""korisnikID""
                                      INNER JOIN ""Projekt""
                                      ON ""Projekt"".""projektID"" = ""Listić"".""projektID""  
-                                     WHERE ""Korisnik"".""email""= '" + user.Identity.GetUserName()+"'";
+                                     WHERE ""Korisnik"".""email""= '" + user.Identity.GetUserName()+"'" +
+                                     "ORDER BY \"Listić\".\"datum\" DESC";
 
                 myTickets= (List<MyTicketViewModel>)connection.Query<MyTicketViewModel>(query);
                 
                 //Reverse list so that the latest Tickets get displayed first
-                myTickets.Reverse();
+
               
             
             };

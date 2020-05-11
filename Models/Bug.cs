@@ -16,6 +16,7 @@ namespace Bug_Tracker.Models
         [Required]
         public string Description { get; set; }
 
+        [Display(Name = "Prioritet")]
         public  int PriorityID { get; set; }
 
         // auto-generate BugID
