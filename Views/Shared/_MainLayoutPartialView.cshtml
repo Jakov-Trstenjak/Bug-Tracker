@@ -70,11 +70,12 @@
                     </a>
                 </li>
 
-                <li>
+                <!-- Enable this when Team will have chat and other functionalities-->
+                @*<li>
                     <a href="@Url.Action("Assignments", "User",new {  id = userName })">
                         <i class="fas fa-tasks"></i> Assignments
                     </a>
-                </li>
+                </li>*@
 
                 <li>
                     <a href="@Url.Action("MyTeam", "User",new {  id = userName })">
@@ -122,7 +123,7 @@
                             </a>
                         </li>
                         <li id="HelloUser">
-                            @Html.ActionLink("Hello " + DapperORM.getUsername() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                            @Html.ActionLink("Hello " + DapperORM.getUsername(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                         </li>
 
 

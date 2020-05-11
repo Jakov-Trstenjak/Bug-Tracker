@@ -13,6 +13,8 @@ namespace Bug_Tracker.ViewModels
         public IEnumerable<Priority> Priorities { get; set; }
         public Ticket Ticket { get; set; }
 
+        public IEnumerable<Projekt> Projects { get; set; }
+
 
         public TicketViewModel()
         {

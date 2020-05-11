@@ -45,6 +45,7 @@ namespace Bug_Tracker.Controllers
         {
             var ticketViewModel = new TicketViewModel {
                 Priorities = DapperORM.GetPriority(),
+                Projects = DapperORM.GetProjectsForReportABug(),
                 Ticket = new Ticket()
                 
             };

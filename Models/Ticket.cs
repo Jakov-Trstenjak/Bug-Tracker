@@ -27,6 +27,9 @@ namespace Bug_Tracker.Models
 
         public string ImageURL { get; set; }
 
+        [Required]
+        public int projektID { get; set; }
+
         public Bug Bug { get; set; }
 
         public Ticket()
