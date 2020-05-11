@@ -22,11 +22,14 @@ namespace Bug_Tracker.Models
         public int MjestoID { get; set; }
         public int TeamID { get; set; }
 
+        public int ulogaID{ get; set; }
+
 
 
         public User()
         {
             UserID = Interlocked.Increment(ref nextID);
+            ulogaID = 1;
         }
 
     }

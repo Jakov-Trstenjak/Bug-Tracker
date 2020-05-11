@@ -268,6 +268,25 @@ namespace Bug_Tracker.Models
             return roleNames;
         }
 
+        public static bool checkIfAdminOrManager(string Username)
+        {
+            bool isAdminOrManager = false;
+
+            using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
+            {
+                connection.Open();
+                var AdminAndManagerUsers = connection.Query<string>("SELECT \"Korisnik\".\"username\" FROM \"Korisnik\" WHERE \"ulogaID\">1");
+
+                if (AdminAndManagerUsers.Contains(Username))
+                {
+                    isAdminOrManager = true;
+                }
+            };
+
+
+
+            return isAdminOrManager;
+        }
 
 
 
