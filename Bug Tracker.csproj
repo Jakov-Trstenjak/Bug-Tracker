@@ -231,6 +231,7 @@
     <Compile Include="ViewModels\NewTicketViewModel.cs" />
     <Compile Include="ViewModels\ProjectViewModel.cs" />
     <Compile Include="ViewModels\TicketViewModel.cs" />
+    <Compile Include="ViewModels\userViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\CSS\Bootstrap-CSS\bootstrap-lumen.css" />
@@ -416,10 +417,11 @@
     <Content Include="Views\MyTickets\MyTicketsPartialView.cshtml" />
     <Content Include="Views\Projects\ViewProjects.cshtml" />
     <Content Include="Views\MyTickets\allTicketsForProject.cshtml" />
+    <Content Include="Views\User\ManageUsers.cshtml" />
+    <Content Include="Views\Admin\EditUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
     <Folder Include="Views\Team\" />
   </ItemGroup>
   <ItemGroup>

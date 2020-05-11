@@ -1,0 +1,45 @@
+﻿@using Bug_Tracker.ViewModels
+@model List<userViewModel>
+@{
+    ViewBag.Title = "ManageUsers";
+    Layout = "~/Views/Shared/_MainLayoutPartialView.cshtml";
+}
+
+<h2>Manage Users</h2>
+
+
+<div>
+    <table id="myTable" width="740px">
+        <tr id="headerOfTable">
+            <th style="width:200px">USERNAME</th>
+            <th style="width:200px">EMAIL</th>
+            <th style="width:200px">ULOGA</th>
+            <th style="width:100px">TIM</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+
+    <tr>
+        <td>@item.username</td>
+        <td>@item.email</td>
+        <td>@item.UlogaNaziv</td>
+        <td>@item.nazivTim</td>
+        <td style="width:20px">
+            <a href="@Url.Action("EditUser", "Admin",new { id =item.korisnikID })">
+                <div style="text-align:center">
+                    <i class="fas fa-edit"></i>
+                </div>
+            </a>
+        </td>
+        <td style="width:20px">
+            <a href="@Url.Action("FullUserDetails", "Admin",new { id = item.korisnikID})">
+                <div style="text-align:center">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                </div>
+            </a>
+        </td>
+        
+    </tr>
+        }
+    </table>
+</div>

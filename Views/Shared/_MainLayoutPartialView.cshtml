@@ -85,7 +85,7 @@
 
                 @if (DapperORM.checkIfAdminOrManager(DapperORM.getUsername())) { 
                     <li>
-                        <a href="@Url.Action("MyTeam", "User",new {  id = userName })">
+                        <a href="@Url.Action("ManageUsers", "User",new {  id = userName })">
                             <i class="fas fa-user-cog"></i> Manage Users
                         </a>
                     </li>
