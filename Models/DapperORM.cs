@@ -268,6 +268,71 @@ namespace Bug_Tracker.Models
             return roleNames;
         }
 
+        public static bool checkIfAdminOrManager(string Username)
+        {
+            bool isAdminOrManager = false;
+
+            using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
+            {
+                connection.Open();
+                var AdminAndManagerUsers = connection.Query<string>("SELECT \"Korisnik\".\"username\" FROM \"Korisnik\" WHERE \"ulogaID\">1");
+
+                if (AdminAndManagerUsers.Contains(Username))
+                {
+                    isAdminOrManager = true;
+                }
+            };
+
+
+
+            return isAdminOrManager;
+        }
+
+        public static List<userViewModel> GetUsers()
+        {
+            var users = new List<userViewModel>();
+
+            using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
+            {
+                connection.Open();
+                var query = @" SELECT ""Korisnik"".*, ""nazivTim"" AS ""nazivTim"",""UlogaNaziv"" as ""UlogaNaziv"" 
+                               FROM ""Korisnik"" 
+                               INNER JOIN public.""Tim"" 
+                               ON ""Korisnik"".""timID"" = ""Tim"".""timID""
+                               INNER JOIN public.""Uloga""
+                               ON ""Korisnik"".""ulogaID"" = ""Uloga"".""UlogaID""";
+                users= (List<userViewModel>)connection.Query<userViewModel>(query);
+
+            };
+
+            return users;
+
+
+        }
+
+        public static userViewModel GetSingleUser(int id)
+        {
+            var users = new List<userViewModel>();
+
+            using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
+            {
+                connection.Open();
+                var query = @" SELECT ""Korisnik"".*, ""nazivTim"" AS ""nazivTim"",""UlogaNaziv"" as ""UlogaNaziv"" 
+                               FROM ""Korisnik"" 
+                               INNER JOIN public.""Tim"" 
+                               ON ""Korisnik"".""timID"" = ""Tim"".""timID""
+                               INNER JOIN public.""Uloga""
+                               ON ""Korisnik"".""ulogaID"" = ""Uloga"".""UlogaID""
+                               WHERE ""Korisnik"".""korisnikID""="+id;
+
+                users = (List<userViewModel>)connection.Query<userViewModel>(query);
+
+            };
+
+            return users.First();
+
+
+        }
 
 
 

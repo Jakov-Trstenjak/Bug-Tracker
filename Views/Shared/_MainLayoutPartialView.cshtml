@@ -53,39 +53,47 @@
                 </li>
 
                 <li>
-                    <a href="@Url.Action("ViewProjects", "Projects",new {  id = userName })">
+                    <a href="@Url.Action("ViewProjects", "Projects", new { id = userName })">
                         <i class="fas fa-project-diagram"></i> Projects
                     </a>
                 </li>
 
                 <li>
-                    <a href="@Url.Action("ReportABug", "User",new {  id = userName })">
+                    <a href="@Url.Action("ReportABug", "User", new { id = userName })">
                         <i class="fa fa-bug"></i> Report a Bug
                     </a>
                 </li>
 
                 <li>
-                    <a href="@Url.Action("MyTickets", "User",new {  id = userName })">
+                    <a href="@Url.Action("MyTickets", "User", new { id = userName })">
                         <i class="fa fa-ticket"></i> My Tickets
                     </a>
                 </li>
 
                 <!-- Enable this when Team will have chat and other functionalities-->
                 @*<li>
-                    <a href="@Url.Action("Assignments", "User",new {  id = userName })">
-                        <i class="fas fa-tasks"></i> Assignments
-                    </a>
-                </li>*@
+            <a href="@Url.Action("Assignments", "User",new {  id = userName })">
+                <i class="fas fa-tasks"></i> Assignments
+            </a>
+        </li>*@
 
                 <li>
-                    <a href="@Url.Action("MyTeam", "User",new {  id = userName })">
+                    <a href="@Url.Action("MyTeam", "User", new { id = userName })">
                         <i class="fa fa-users"></i> My Team
                     </a>
                 </li>
 
+                @if (DapperORM.checkIfAdminOrManager(DapperORM.getUsername())) { 
+                    <li>
+                        <a href="@Url.Action("ManageUsers", "User",new {  id = userName })">
+                            <i class="fas fa-user-cog"></i> Manage Users
+                        </a>
+                    </li>
+                }
+
                 <li>
                     <a href="@Url.Action("UserProfile", "User",new {  id = userName})">
-                        <i class="fas fa-user-cog"></i> User Profile
+                        <i class="fas fa-user-edit"></i> User Profile
                     </a>
                 </li>
 

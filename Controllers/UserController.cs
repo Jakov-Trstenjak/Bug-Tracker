@@ -40,6 +40,13 @@ namespace Bug_Tracker.Controllers
             return View();
         }
 
+
+        public ActionResult ManageUsers(string Username)
+        {
+            List<userViewModel> users = DapperORM.GetUsers();
+            return View(users);
+        }
+
         [HttpGet]
         public ActionResult ReportABug(string username)
         {
