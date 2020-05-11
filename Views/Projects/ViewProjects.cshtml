@@ -29,7 +29,7 @@
                 <td>@item.opisProjekta</td>
                 <td>@datum[0]</td>
                 <td>
-                    <a href="@Url.Action("TicketDetails", "MyTickets",new { id = item.projektID })">
+                    <a href="@Url.Action("allTicketsForProject", "MyTickets",new { id = item.projektID })">
                         <div>
                             @item.brojListica
                         </div>

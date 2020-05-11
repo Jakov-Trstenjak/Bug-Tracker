@@ -1,0 +1,45 @@
+﻿@using Bug_Tracker.ViewModels
+@model List<MyTicketViewModel>
+
+@{
+    ViewBag.Title = "allTicketsForProject";
+    Layout = "~/Views/Shared/_MainLayoutPartialView.cshtml";
+}
+
+<h3>Tickets for Project: @Model.First().nazivProjekta</h3>
+
+
+
+<div>
+    <table id="myTable">
+        <tr id="headerOfTable">
+            <th>TICKET ID</th>
+            <th>TITLE</th>
+            <th>PRIORITY</th>
+            <th>CREATED</th>
+            <th>PROJECT NAME</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>@item.listićID</td>
+                <td>@item.listićIme</td>
+                <td>@item.nazivPrioritet</td>
+                <td>@item.datum</td>
+                <td>@item.nazivProjekta</td>
+                <td>
+                    <a href="@Url.Action("TicketDetails", "MyTickets",new { id = item.listićID })">
+                        <div>
+                            More details
+                        </div>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+
+}

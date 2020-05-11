@@ -144,7 +144,7 @@ namespace Bug_Tracker.Models
 
 
 
-        public static List<MyTicketViewModel> getAllTickets()
+        public static List<MyTicketViewModel> getAllTickets(int projectId)
         {
             List<MyTicketViewModel> myTickets;
 
@@ -152,13 +152,17 @@ namespace Bug_Tracker.Models
             {
                 connection.Open();
                 var user = HttpContext.Current.User;
-                string query = @"SELECT ""Listić"".""listićID"",  ""Korisnik"".""username"",""Listić"".""slika"",""Listić"".""datum"",""Listić"".""listićIme"", ""Pogreška"".""opisPogreška"",""Prioritet"".""nazivPrioritet""
+                string query = @"SELECT ""Listić"".""listićID"",  ""Korisnik"".""username"",""Listić"".""slika"",""Listić"".""datum"",""Listić"".""listićIme"", ""Pogreška"".""opisPogreška"",""Prioritet"".""nazivPrioritet"",""Projekt"".""nazivProjekta""
                                      FROM ""Listić"" INNER JOIN ""Pogreška""  
                                      ON ""Listić"".""pogreskaID"" = ""Pogreška"".""pogreskaID""
                                      INNER JOIN ""Prioritet""
                                      ON ""Pogreška"".""prioritetID"" = ""Prioritet"".""prioritetID""
                                      INNER JOIN ""Korisnik""
-                                     ON ""Listić"".""korisnikID"" = ""Korisnik"".""korisnikID""";
+                                     ON ""Listić"".""korisnikID"" = ""Korisnik"".""korisnikID""
+                                     INNER JOIN ""Projekt""
+                                     ON ""Projekt"".""projektID"" = ""Listić"".""projektID""
+                                     WHERE ""Listić"".""projektID""="+projectId;
+;
 
                 myTickets = (List<MyTicketViewModel>)connection.Query<MyTicketViewModel>(query);
 
@@ -177,14 +181,16 @@ namespace Bug_Tracker.Models
             {
                 connection.Open();
                 var user = HttpContext.Current.User;
-                string query = @"SELECT ""Listić"".""listićID"",  ""Korisnik"".""username"",""Listić"".""slika"",""Listić"".""datum"",""Listić"".""listićIme"", ""Pogreška"".""opisPogreška"",""Prioritet"".""nazivPrioritet""
+                string query = @"SELECT ""Listić"".""listićID"",  ""Korisnik"".""username"",""Listić"".""slika"",""Listić"".""datum"",""Listić"".""listićIme"", ""Pogreška"".""opisPogreška"",""Prioritet"".""nazivPrioritet"", ""Projekt"".""nazivProjekta""
                                      FROM ""Listić"" INNER JOIN ""Pogreška""  
                                      ON ""Listić"".""pogreskaID"" = ""Pogreška"".""pogreskaID""
                                      INNER JOIN ""Prioritet""
                                      ON ""Pogreška"".""prioritetID"" = ""Prioritet"".""prioritetID""
                                      INNER JOIN ""Korisnik""
                                      ON ""Listić"".""korisnikID"" = ""Korisnik"".""korisnikID""
-                                     WHERE ""Korisnik"".""email""= '"+user.Identity.GetUserName()+"'";
+                                     INNER JOIN ""Projekt""
+                                     ON ""Projekt"".""projektID"" = ""Listić"".""projektID""  
+                                     WHERE ""Korisnik"".""email""= '" + user.Identity.GetUserName()+"'";
 
                 myTickets= (List<MyTicketViewModel>)connection.Query<MyTicketViewModel>(query);
                 
@@ -205,13 +211,15 @@ namespace Bug_Tracker.Models
             {
                 connection.Open();
                 var user = HttpContext.Current.User;
-                string query = @"SELECT ""Listić"".""listićID"",  ""Korisnik"".""username"",""Listić"".""slika"",""Listić"".""datum"",""Listić"".""listićIme"", ""Pogreška"".""opisPogreška"",""Prioritet"".""nazivPrioritet""
+                string query = @"SELECT ""Listić"".""listićID"",  ""Korisnik"".""username"",""Listić"".""slika"",""Listić"".""datum"",""Listić"".""listićIme"", ""Pogreška"".""opisPogreška"",""Prioritet"".""nazivPrioritet"",""Projekt"".""nazivProjekta""
                                      FROM ""Listić"" INNER JOIN ""Pogreška""  
                                      ON ""Listić"".""pogreskaID"" = ""Pogreška"".""pogreskaID""
                                      INNER JOIN ""Prioritet""
                                      ON ""Pogreška"".""prioritetID"" = ""Prioritet"".""prioritetID""
                                      INNER JOIN ""Korisnik""
                                      ON ""Listić"".""korisnikID"" = ""Korisnik"".""korisnikID""
+                                      INNER JOIN ""Projekt""
+                                     ON ""Projekt"".""projektID"" = ""Listić"".""projektID""  
                                      WHERE ""Korisnik"".""email""= '" + user.Identity.GetUserName() + "'" + "AND \"Pogreška\".\"pogreskaID\"=" + id;
 
                 myTickets = (List<MyTicketViewModel>)connection.Query<MyTicketViewModel>(query);
