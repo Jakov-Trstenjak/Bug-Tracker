@@ -206,6 +206,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MyTicketsController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -218,6 +219,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Priority.cs" />
+    <Compile Include="Models\Projekt.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\User.cs" />
@@ -225,6 +227,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\MyTicketViewModel.cs" />
     <Compile Include="ViewModels\NewTicketViewModel.cs" />
+    <Compile Include="ViewModels\ProjectViewModel.cs" />
     <Compile Include="ViewModels\TicketViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -409,6 +412,7 @@
     <Content Include="Views\MyTickets\Edit.cshtml" />
     <Content Include="Views\MyTickets\TicketDetails.cshtml" />
     <Content Include="Views\MyTickets\MyTicketsPartialView.cshtml" />
+    <Content Include="Views\Projects\ViewProjects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
