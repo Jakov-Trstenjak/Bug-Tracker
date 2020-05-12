@@ -21,7 +21,7 @@ namespace Bug_Tracker.ViewModels
         [Display(Name = "Lozinka")]
         public string lozinka{ get; set; }
 
-        [Display(Name = "E-mail")]
+        [Display(Name = "Email")]
         public string email { get; set; }
 
         [Display(Name = "Ime")]

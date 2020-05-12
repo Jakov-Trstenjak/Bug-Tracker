@@ -12,9 +12,9 @@ namespace Bug_Tracker.Controllers
     {
         // GET: Admin
         [HttpGet]
-        public ActionResult EditUser(int id)
+        public ActionResult EditUser(string username)
         {
-            userViewModel user =DapperORM.GetSingleUser(id);
+            userViewModel user =DapperORM.GetSingleUser(username);
             user.teams = DapperORM.getTeamData();
             user.roles = DapperORM.getRoleData();
             return View(user);

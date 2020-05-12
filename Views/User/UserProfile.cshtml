@@ -1,8 +1,93 @@
-﻿
+﻿@using Bug_Tracker.ViewModels
+@model userViewModel
 @{
     ViewBag.Title = "UserProfile";
     Layout = "~/Views/Shared/_MainLayoutPartialView.cshtml";
 }
 
-<h2>UserProfile</h2>
 
+<link rel="stylesheet" href="~/Content/CSS/UserProfile.css" />
+
+@using (Html.BeginForm("UserProfile", "User", FormMethod.Post, new { id = "submit" }))
+{
+    <aside class="profile-cardUser">
+        <div class="mask-shadowUser" ></div>
+        <header>
+
+            <!-- here’s the avatar -->
+            <a>
+                <img src=@Model.Avatar>
+            </a>
+
+            <!-- the username -->
+            <h1>@Model.username</h1>
+
+            <!-- and role or location -->
+            <h2>@Model.UlogaNaziv</h2>
+
+        </header>
+
+        <!-- bit of a bio; who are you? -->
+        <div class="column">
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.username)
+                @Html.TextBoxFor(m => m.username, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.lozinka)
+                @Html.TextBoxFor(m => m.lozinka, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.email)
+                @Html.TextBoxFor(m => m.email, new { @class = "form-control" })
+            </div>
+
+        </div>
+
+        <div class="column">
+
+            <!-- postaviti ulogu i naziv da se ne mogu mijenjati-->
+            <div class="form-group">
+                @Html.LabelFor(m => m.UlogaNaziv)
+                @Html.TextBoxFor(m => m.UlogaNaziv, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.nazivTim)
+                @Html.TextBoxFor(m => m.nazivTim, new { @class = "form-control", @readonly = "readonly" })
+                
+            </div>
+
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Avatar)
+                @Html.TextBoxFor(m => m.Avatar, new { @class = "form-control", @id = "notAvatar" })
+            </div>
+
+        </div>
+
+        <div>
+            <button type="submit" class="submitButton">Update</button>
+        </div>
+
+    </aside>
+    <!-- that’s all folks! -->
+
+<div style="opacity:0">
+    @Html.LabelFor(m => m.korisnikID)
+    @Html.TextBoxFor(m => m.korisnikID, new { @class = "form-control", @id = "notAvatar" })
+
+    @Html.LabelFor(m => m.timID)
+    @Html.TextBoxFor(m => m.timID, new { @class = "form-control", @id = "notAvatar" })
+    
+    @Html.LabelFor(m => m.ulogaID)
+    @Html.TextBoxFor(m => m.ulogaID, new { @class = "form-control", @id = "notAvatar" })
+
+</div>
+
+}

@@ -25,14 +25,14 @@
         <td>@item.UlogaNaziv</td>
         <td>@item.nazivTim</td>
         <td style="width:20px">
-            <a href="@Url.Action("EditUser", "Admin",new { id =item.korisnikID })">
+            <a href="@Url.Action("EditUser", "Admin",new { username = item.username })">
                 <div style="text-align:center">
                     <i class="fas fa-edit"></i>
                 </div>
             </a>
         </td>
         <td style="width:20px">
-            <a href="@Url.Action("FullUserDetails", "Admin",new { id = item.korisnikID})">
+            <a href="@Url.Action("FullUserDetails", "Admin",new { username = item.username})">
                 <div style="text-align:center">
                     <i class="fa fa-eye" aria-hidden="true"></i>
                 </div>
