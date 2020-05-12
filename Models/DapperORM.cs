@@ -127,13 +127,28 @@ namespace Bug_Tracker.Models
                 System.Diagnostics.Debug.WriteLine("hi");
             };
         }
-        public static void getTeamData()
+        public static List<Team> getTeamData()
         {
+            var teams = new List<Team>();
             using (var connection = new NpgsqlConnection("Host=localhost;Username=postgres;Password=nikola000;Database=BugTrackerDB"))
             {
                 connection.Open();
-                var priority = connection.Query<Team>("SELECT timID, nazivTIM, projektID FROM public.\"Tim\"");
+                teams = (List<Team>)connection.Query<Team>("SELECT * FROM public.\"Tim\"");
             };
+
+            return teams;
+        }
+
+        public static List<string> getTeamNames()
+        {
+            var teamNames = new List<string>();
+            using (var connection = new NpgsqlConnection("Host=localhost;Username=postgres;Password=nikola000;Database=BugTrackerDB"))
+            {
+                connection.Open();
+                teamNames = (List<string>)connection.Query<string>("SELECT \"nazivTim\" FROM public.\"Tim\"");
+            };
+
+            return teamNames;
         }
 
         public static List<ProjectViewModel> getProjects()
@@ -261,11 +276,23 @@ namespace Bug_Tracker.Models
             using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
             {
                 connection.Open();
-                var priorityName = connection.Query<string>("SELECT  \"nazivUloga\" FROM Public.\"Uloga\"");
+                roleNames = (List<string>)connection.Query<string>("SELECT  \"UlogaNaziv\" FROM Public.\"Uloga\"");
 
             };
 
             return roleNames;
+        }
+
+        public static List<Role> getRoleData()
+        {
+            var teams = new List<Role>();
+            using (var connection = new NpgsqlConnection("Host=localhost;Username=postgres;Password=nikola000;Database=BugTrackerDB"))
+            {
+                connection.Open();
+                teams = (List<Role>)connection.Query<Role>("SELECT * FROM public.\"Uloga\"");
+            };
+
+            return teams;
         }
 
         public static bool checkIfAdminOrManager(string Username)
@@ -332,6 +359,21 @@ namespace Bug_Tracker.Models
             return users.First();
 
 
+        }
+
+
+        public static void updateUser(userViewModel updateUser)
+        {
+            using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
+            {
+                connection.Open();
+                var query = @"UPDATE ""Korisnik"" 
+                              SET ""username"" = '" + updateUser.username + "',\"lozinka\"='" + updateUser.lozinka + "',\"email\"='" + updateUser.email + "',\"timID\"=" + updateUser.timID + ",\"Avatar\"='" + updateUser.Avatar + "',\"ulogaID\"=" + updateUser.ulogaID
+                            + "WHERE \"korisnikID\"=" + updateUser.korisnikID;
+     
+                connection.Query<userViewModel>(query);
+
+            };
         }
 
 

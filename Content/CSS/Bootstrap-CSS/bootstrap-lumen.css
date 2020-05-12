@@ -6808,6 +6808,7 @@ table:not(.table-bordered) > tfoot > tr > td,
 }
 label {
   font-weight: normal;
+  font:"Roboto";
 }
 .has-warning .help-block,
 .has-warning .control-label,
@@ -6837,7 +6838,9 @@ label {
 .has-error .radio-inline,
 .has-error .checkbox-inline,
 .has-error.radio label,
-.has-error.checkbox label,
+.has-error.checkbox 
+
+,
 .has-error.radio-inline label,
 .has-error.checkbox-inline label,
 .has-error .form-control-feedback {
