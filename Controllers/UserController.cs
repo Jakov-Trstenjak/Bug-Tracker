@@ -35,9 +35,18 @@ namespace Bug_Tracker.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult UserProfile(string Username)
         {
-            return View();
+            userViewModel currentUser = DapperORM.GetSingleUser(DapperORM.getUsername());
+            return View(currentUser);
+        }
+
+        [HttpPost]
+        public ActionResult UserProfile(userViewModel model)
+        {
+            DapperORM.updateUser(model);
+            return RedirectToAction("UserProfile", "User", new { id = DapperORM.getUsername() });
         }
 
 

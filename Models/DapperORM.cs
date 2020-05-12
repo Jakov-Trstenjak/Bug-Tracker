@@ -337,7 +337,7 @@ namespace Bug_Tracker.Models
 
         }
 
-        public static userViewModel GetSingleUser(int id)
+        public static userViewModel GetSingleUser(string username)
         {
             var users = new List<userViewModel>();
 
@@ -350,7 +350,7 @@ namespace Bug_Tracker.Models
                                ON ""Korisnik"".""timID"" = ""Tim"".""timID""
                                INNER JOIN public.""Uloga""
                                ON ""Korisnik"".""ulogaID"" = ""Uloga"".""UlogaID""
-                               WHERE ""Korisnik"".""korisnikID""="+id;
+                               WHERE ""Korisnik"".""username""="+"'"+username+"'";
 
                 users = (List<userViewModel>)connection.Query<userViewModel>(query);
 
