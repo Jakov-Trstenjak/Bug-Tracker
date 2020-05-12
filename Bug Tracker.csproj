@@ -222,6 +222,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Priority.cs" />
     <Compile Include="Models\Projekt.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\User.cs" />
@@ -242,6 +243,7 @@
     <Content Include="Content\CSS\SideBar.css" />
     <Content Include="Content\CSS\Table\table.css" />
     <Content Include="Content\CSS\TicketDetails.css" />
+    <Content Include="Content\CSS\UserProfile.css" />
     <Content Include="Content\Images\BugTrackerFinal.png" />
     <Content Include="Content\Images\Registration3.png" />
     <Content Include="Content\LoginPage\css\main.css" />
