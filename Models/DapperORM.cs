@@ -12,6 +12,7 @@ using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Bug_Tracker.ViewModels;
 using System.Data.Entity.Core.Objects;
+using System.Drawing;
 
 namespace Bug_Tracker.Models
 {
@@ -263,7 +264,7 @@ namespace Bug_Tracker.Models
             {
                 connection.Open();
 
-                string query = @"INSERT INTO public.""Korisnik"" (""Avatar"",""korisnikID"",""username"",""lozinka"",""email"") VALUES('"+ newUser.Avatar+"',"+ newUser.UserID+",'"+newUser.Username+"','"+ newUser.Password+"','"+ newUser.Email+"')";
+                string query = @"INSERT INTO public.""Korisnik"" (""Avatar"",""korisnikID"",""username"",""lozinka"",""email"",""timID"",""ulogaID"") VALUES('"+ newUser.Avatar+"',"+ newUser.UserID+",'"+newUser.Username+"','"+ newUser.Password+"','"+ newUser.Email+"',1,1)";
                 var saveUser = connection.Query<bool>(query);
                 
             };
@@ -310,10 +311,29 @@ namespace Bug_Tracker.Models
                 }
             };
 
+            return isAdminOrManager;
+        }
 
+        public static bool checkIfAdmin(string Username)
+        {
+            bool isAdminOrManager = false;
+
+            using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
+            {
+                connection.Open();
+                var AdminAndManagerUsers = connection.Query<string>("SELECT \"Korisnik\".\"username\" FROM \"Korisnik\" WHERE \"ulogaID\">2");
+
+                if (AdminAndManagerUsers.Contains(Username))
+                {
+                    isAdminOrManager = true;
+                }
+            };
 
             return isAdminOrManager;
         }
+
+
+
 
         public static List<userViewModel> GetUsers()
         {
@@ -376,7 +396,19 @@ namespace Bug_Tracker.Models
             };
         }
 
+        public static string getImage(string username)
+        {
+            var imageURL = new LinkedList<string>();
 
+            using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
+            {
+                connection.Open();
+                connection.Query<userViewModel>("");
+
+            };
+
+            return imageURL.First();
+        }
 
 
 

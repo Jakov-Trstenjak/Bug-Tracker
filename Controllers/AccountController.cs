@@ -168,7 +168,7 @@ namespace Bug_Tracker.Controllers
                         Username = model.Username,
                         Password = model.Password,
                         Email = model.Email,
-                        Avatar = "https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/user.png"
+                        Avatar = "https://eu.ui-avatars.com/api/?name=" + model.Username + "?size=360"
                     };
                     System.Diagnostics.Debug.WriteLine("Result succeeded");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);

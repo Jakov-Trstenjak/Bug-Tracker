@@ -40,7 +40,7 @@
             </header>
 
             <div>
-                <img src="https://github.com/Jakov-Trstenjak.png" alt="Avatar" id="Avatar" >
+                <img src="@DapperORM.getImage(userName)" alt="Avatar" id="Avatar" >
             </div>
 
             <ul class="nav">
@@ -83,7 +83,7 @@
                     </a>
                 </li>
 
-                @if (DapperORM.checkIfAdminOrManager(DapperORM.getUsername())) { 
+                @if (DapperORM.checkIfAdmin(DapperORM.getUsername())) { 
                     <li>
                         <a href="@Url.Action("ManageUsers", "User",new {  id = userName })">
                             <i class="fas fa-user-cog"></i> Manage Users
