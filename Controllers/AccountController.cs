@@ -168,7 +168,7 @@ namespace Bug_Tracker.Controllers
                         Username = model.Username,
                         Password = model.Password,
                         Email = model.Email,
-                        Avatar = "https://eu.ui-avatars.com/api/?name=" + model.Username + "?size=360"
+                        Avatar = "https://eu.ui-avatars.com/api/?name=" + model.Username+ "&size=512&uppercase=false"
                     };
                     System.Diagnostics.Debug.WriteLine("Result succeeded");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);

@@ -398,16 +398,18 @@ namespace Bug_Tracker.Models
 
         public static string getImage(string username)
         {
-            var imageURL = new LinkedList<string>();
+            var imageURL = new List<string>();
 
             using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
             {
                 connection.Open();
-                connection.Query<userViewModel>("");
+                imageURL=(List<string>) connection.Query<string>("SELECT \"Avatar\" FROM \"public\".\"Korisnik\" WHERE username='"+ username+"'");
 
             };
-
+            if(imageURL.Count>0)
             return imageURL.First();
+        
+            return "https://eu.ui-avatars.com/api/?name="+username+"&size=512&uppercase=false";
         }
 
 
