@@ -71,11 +71,14 @@
                 </li>
 
                 <!-- Enable this when Team will have chat and other functionalities-->
-                @*<li>
-            <a href="@Url.Action("Assignments", "User",new {  id = userName })">
-                <i class="fas fa-tasks"></i> Assignments
-            </a>
-        </li>*@
+                @if (DapperORM.checkIfAdminOrManager(userName)){
+                    <li>
+                        <a href="@Url.Action("Assignments", "User",new {  id = userName })">
+                            <i class="fas fa-tasks"></i> Assignments
+                        </a>
+                    </li>
+                }
+
 
                 <li>
                     <a href="@Url.Action("MyTeam", "User", new { id = userName })">
@@ -83,12 +86,12 @@
                     </a>
                 </li>
 
-                @if (DapperORM.checkIfAdmin(DapperORM.getUsername())) { 
-                    <li>
-                        <a href="@Url.Action("ManageUsers", "User",new {  id = userName })">
-                            <i class="fas fa-user-cog"></i> Manage Users
-                        </a>
-                    </li>
+                @if (DapperORM.checkIfAdmin(userName)) {
+                <li>
+                    <a href="@Url.Action("ManageUsers", "User",new {  id = userName })">
+                        <i class="fas fa-user-cog"></i> Manage Users
+                    </a>
+                </li>
                 }
 
                 <li>
