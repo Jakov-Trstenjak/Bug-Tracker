@@ -228,6 +228,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\MyTeamViewModel.cs" />
     <Compile Include="ViewModels\MyTicketViewModel.cs" />
     <Compile Include="ViewModels\NewTicketViewModel.cs" />
     <Compile Include="ViewModels\ProjectViewModel.cs" />
@@ -276,6 +277,7 @@
     <Content Include="Content\LoginPage\vendor\select2\select2.min.css" />
     <Content Include="Content\LoginPage\vendor\select2\select2.min.js" />
     <Content Include="Content\LoginPage\vendor\tilt\tilt.jquery.min.js" />
+    <Content Include="Content\CSS\PieChart.css" />
     <Content Include="Content\TicketCard\Ticket.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -370,6 +372,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\PieChart.js" />
     <Content Include="Scripts\SideMenu.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -421,6 +424,7 @@
     <Content Include="Views\MyTickets\allTicketsForProject.cshtml" />
     <Content Include="Views\User\ManageUsers.cshtml" />
     <Content Include="Views\Admin\EditUser.cshtml" />
+    <Content Include="Views\User\Assignments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

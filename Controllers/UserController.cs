@@ -9,8 +9,10 @@ using Bug_Tracker.ViewModels;
 
 namespace Bug_Tracker.Controllers
 {
+   
     public class UserController : Controller
     {
+        private string username = DapperORM.getUsername();
         //dohvati iz baze podataka Username trenutnog korisnika.
         // GET: User
         public ActionResult Index()
@@ -21,7 +23,8 @@ namespace Bug_Tracker.Controllers
 
         public ActionResult Dashboard(string Username)
         {
-            return View();
+            List<int> listOfTicketPriorities = DapperORM.getNumberOfTicketPrioritiesForDashboard();
+            return View(listOfTicketPriorities);
         }
         public ActionResult MyTickets(string Username)
         {
@@ -32,13 +35,16 @@ namespace Bug_Tracker.Controllers
 
         public ActionResult MyTeam(string Username)
         {
-            return View();
+            var teamData = DapperORM.getMyTeamData(username);
+
+            return View(teamData);
+           
         }
 
         [HttpGet]
         public ActionResult UserProfile(string Username)
         {
-            userViewModel currentUser = DapperORM.GetSingleUser(DapperORM.getUsername());
+            userViewModel currentUser = DapperORM.GetSingleUser(username);
             return View(currentUser);
         }
 
@@ -46,7 +52,7 @@ namespace Bug_Tracker.Controllers
         public ActionResult UserProfile(userViewModel model)
         {
             DapperORM.updateUser(model);
-            return RedirectToAction("UserProfile", "User", new { id = DapperORM.getUsername() });
+            return RedirectToAction("UserProfile", "User", new { id =username });
         }
 
 
@@ -84,8 +90,13 @@ namespace Bug_Tracker.Controllers
             }
             DapperORM.saveTicket(Ticket);
             
-            return RedirectToAction("MyTickets", "User", new { id = DapperORM.getUsername() });
+            return RedirectToAction("MyTickets", "User", new { id =username });
 
+        }
+        
+        public  ActionResult Assignments()
+        {
+            return View();
         }
 
     

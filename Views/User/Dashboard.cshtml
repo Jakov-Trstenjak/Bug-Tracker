@@ -1,6 +1,48 @@
-﻿@model Bug_Tracker.Models.Priority
+﻿@model List<int>
 @{
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_MainLayoutPartialView.cshtml";
 }
 
+<h3>Dashboard</h3>
+<html>
+
+
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Priorities', 'Tickets by priority'],
+                ['NISKI', @Model[0]],
+                ['SREDNJI', @Model[1]],
+                ['VISOKI', @Model[2]],
+                ['VRLO VISOKI', @Model[3]]
+            ]);
+
+            var options = {
+                title: 'Tickets by Priority',
+                pieHole: 0.5,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, options);
+        }
+
+        function init() {
+            drawChart('donutchart', 'VB.NET', 8, 2);
+            drawChart('donutchart2', 'Javascript', 4, 6);
+        }
+
+    </script>
+
+
+
+
+</head>
+<body>
+    <div id="donutchart" style="width: 900px; height: 400px;"></div>
+</body>
+</html>
