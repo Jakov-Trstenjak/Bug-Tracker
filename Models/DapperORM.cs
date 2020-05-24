@@ -413,6 +413,71 @@ namespace Bug_Tracker.Models
         }
 
 
+        public static List<int> getNumberOfTicketPrioritiesForDashboard()
+        {
+            var listOfTicketPriorities = new List<int>();
+            using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
+            {
+                connection.Open();
+                var query = @"SELECT  COUNT( ""prioritetID"") 
+                          FROM ""Listić""
+                          INNER JOIN ""Pogreška""
+                          ON ""Listić"".""pogreskaID"" = ""Pogreška"".""pogreskaID""
+                          GROUP BY ""prioritetID""";
+
+              listOfTicketPriorities= (List<int>)connection.Query<int>(query);
+
+            };
+
+            return listOfTicketPriorities;
+        }
+
+
+        public static List<MyTeamViewModel> getMyTeamData(string username)
+        {
+            var myTeamData = new List<MyTeamViewModel>();
+            using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
+            {
+                connection.Open();
+                var query = @"SELECT ""username"",""email"",""Avatar"",""UlogaID"" as ""roleID"",""UlogaNaziv"" as ""roleName"",COUNT(""listićID"") as ""TicketsCommitted"", ""nazivTim"" as ""teamName""
+                              FROM ""Korisnik""
+                              INNER JOIN ""Uloga""
+                              on ""Korisnik"".""ulogaID"" = ""Uloga"".""UlogaID""
+                              left JOIN ""Listić""
+                              on ""Listić"".""korisnikID"" = ""Korisnik"".""korisnikID""
+                              left JOIN ""Tim""
+                              ON ""Tim"".""timID"" = ""Korisnik"".""timID""
+                              WHERE ""Korisnik"".""timID""='"+getMyTeam(username)+"'"+
+                              "GROUP BY \"username\",\"email\",\"Avatar\",\"roleID\",\"roleName\",\"teamName\"";
+
+
+
+
+                myTeamData = (List<MyTeamViewModel>)connection.Query<MyTeamViewModel>(query);
+
+            };
+
+            return myTeamData;
+
+        }
+
+        public static int getMyTeam(string username)
+        {
+            var myTeamID = new List<int>();
+            using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
+            {
+                connection.Open();
+                var query = @"SELECT ""timID""
+                              FROM ""Korisnik""
+                              WHERE ""username""=" +"\'"+username+"\'";
+
+
+                myTeamID = (List<int>)connection.Query<int>(query);
+
+            };
+            
+            return myTeamID.First();
+        }
 
     }
 

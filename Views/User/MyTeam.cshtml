@@ -1,8 +1,33 @@
-﻿
+﻿@using Bug_Tracker.ViewModels
+@model List<MyTeamViewModel>
 @{
     ViewBag.Title = "MyTeam";
     Layout = "~/Views/Shared/_MainLayoutPartialView.cshtml";
 }
 
-<h2>MyTeam</h2>
+<h3>My Team: @Model[0].teamName</h3>
 
+
+
+<div>
+    <table id="myTable">
+        <tr id="headerOfTable">
+            <th>AVATAR</th>
+            <th>USERNAME</th>
+            <th>ROLE</th>
+            <th>EMAIL</th>
+            <th>TICKETS COMMITED</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td><img src="@item.Avatar" style="border-radius: 50%;height:50px; width:50px;"></td>
+                <td>@item.Username</td>
+                <td>@item.roleName</td>
+                <td>@item.Email</td>
+                <td>@item.TicketsCommitted</td>
+            </tr>
+        }
+    </table>
+</div>
