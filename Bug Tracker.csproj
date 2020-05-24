@@ -241,6 +241,7 @@
     <Content Include="Content\CSS\Bootstrap-CSS\bootstrap-theme.min.css" />
     <Content Include="Content\CSS\Bootstrap-CSS\bootstrap.css" />
     <Content Include="Content\CSS\Bootstrap-CSS\bootstrap.min.css" />
+    <Content Include="Content\CSS\ReportABug.css" />
     <Content Include="Content\CSS\SideBar.css" />
     <Content Include="Content\CSS\Table\table.css" />
     <Content Include="Content\CSS\TicketDetails.css" />

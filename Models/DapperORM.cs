@@ -123,8 +123,8 @@ namespace Bug_Tracker.Models
                 }
                 
                 
-                var saveBug = connection.Query<string>("INSERT INTO public.\"Pogreška\" VALUES("+ Ticket.Bug.BugID+",'"+Ticket.Bug.Description+"',"+Ticket.Bug.PriorityID+")");
-                var saveTicket = connection.Query<Team>("INSERT INTO public.\"Listić\" VALUES(" +Ticket.Bug.BugID +"," +userID+",'"+Ticket.ImageURL+"',"+Ticket.Bug.BugID+",'"+Ticket.TicketTitle+"','"+Ticket.Time+"',"+Ticket.projektID+")");
+                connection.Query<string>("INSERT INTO public.\"Pogreška\" VALUES("+ Ticket.Bug.BugID+",'"+Ticket.Bug.Description+"',"+Ticket.Bug.PriorityID+")");
+                connection.Query<Team>("INSERT INTO public.\"Listić\" VALUES(" +Ticket.Bug.BugID +"," +userID+","+Ticket.Bug.BugID+",'"+Ticket.TicketTitle+"','"+Ticket.Time+"',"+Ticket.projektID+ ",'"+Ticket.ImageURL + "')");
                 System.Diagnostics.Debug.WriteLine("hi");
             };
         }

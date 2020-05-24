@@ -33,6 +33,7 @@ namespace Bug_Tracker.Models
 
         public Bug Bug { get; set; }
 
+
         public Ticket()
         {
             Time = DateTime.Now.ToString(@"dd\/MM\/yyyy h\:mm tt");
