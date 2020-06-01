@@ -19,7 +19,7 @@ namespace Bug_Tracker.Models
         [Display(Name = "Prioritet")]
         public  int PriorityID { get; set; }
 
-        // auto-generate BugID
+        // auto-ge nerate BugID
         public Bug()
         {
             BugID = Interlocked.Increment(ref nextID);
