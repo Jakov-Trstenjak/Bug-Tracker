@@ -1,14 +1,17 @@
 ﻿@using Bug_Tracker.ViewModels
 @model List<MyTicketViewModel>
+@using Bug_Tracker.Models
 
 @{
     ViewBag.Title = "allTicketsForProject";
     Layout = "~/Views/Shared/_MainLayoutPartialView.cshtml";
 }
 
-<h3>Tickets for Project: @Model.First().nazivProjekta</h3>
+<link rel="stylesheet" href="~/Content/CSS/Assignments.css" />
 
-
+@{
+    var isAdminOrManager = (DapperORM.checkIfAdminOrManager(DapperORM.getUsername()));
+}
 
 <div>
     <table id="myTable">
@@ -18,7 +21,6 @@
             <th>PRIORITY</th>
             <th>CREATED</th>
             <th>PROJECT NAME</th>
-            <th>STATUS</th>
         </tr>
         @foreach (var item in Model)
         {
@@ -29,7 +31,6 @@
                 <td>@item.nazivPrioritet</td>
                 <td>@item.datum</td>
                 <td>@item.nazivProjekta</td>
-                <td>@item.statusName</td>
                 <td>
                     <a href="@Url.Action("TicketDetails", "MyTickets",new { id = item.listićID })">
                         <div>
@@ -37,8 +38,22 @@
                         </div>
                     </a>
                 </td>
+
+                @{ if (isAdminOrManager)
+                    {
+                        <td>
+                            <a href="@Url.Action("assignTicketToTeam", "Assignments",new { id = item.listićID})">
+                                <i class="fas fa-plus-circle"></i>
+
+
+                            </a>
+                        </td>
+                    }
+
+                }
             </tr>
         }
+
     </table>
 </div>
 

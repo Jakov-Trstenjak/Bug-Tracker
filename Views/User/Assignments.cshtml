@@ -1,8 +1,51 @@
-﻿
+﻿@using Bug_Tracker.ViewModels
+@model List<AssignmentViewModel>
+@using Bug_Tracker.Models
+
 @{
-    ViewBag.Title = "Assignments";
+    ViewBag.Title = "allTicketsForProject";
     Layout = "~/Views/Shared/_MainLayoutPartialView.cshtml";
 }
 
-<h2>Assignments</h2>
+<link rel="stylesheet" href="~/Content/CSS/Assignments.css" />
 
+@{
+    var isAdminOrManager = (DapperORM.checkIfAdminOrManager(DapperORM.getUsername()));
+   
+    if (isAdminOrManager)
+    {
+        <a href="@Url.Action("addAssignments", "Assignments")">
+            <button type="submit" class="submitButton">Add Assignment</button>
+        </a>
+    }
+
+}
+
+<div>
+    <table id="myTable">
+        <tr id="headerOfTable">
+            <th>NAZIV</th>
+            <th>OPIS </th>
+            <th>TIM</th>
+            <th>ROK</th>
+            <th>ZADAO</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>@item.zadatakIme</td>
+                <td>@item.zadatakOpis</td>
+                <td>@item.nazivTim</td>
+                <td>@item.datum</td>
+                <td>@item.Submitter</td>
+                
+            </tr>
+        }
+
+    </table>
+</div>
+
+
+
+}

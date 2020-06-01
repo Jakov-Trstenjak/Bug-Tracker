@@ -1,0 +1,98 @@
+﻿
+@using Bug_Tracker.ViewModels
+@model AssignmentViewModel
+
+
+@{
+    ViewBag.Title = "assigntTicketToTeam";
+    Layout = "~/Views/Shared/_MainLayoutPartialView.cshtml";
+}
+
+<h3>Assign Ticket to team</h3>
+
+
+<link rel="stylesheet" href="~/Content/CSS/ReportABug.css" />
+
+
+@using (Html.BeginForm("assignTicketToTeam", "Assignments", FormMethod.Post))
+{
+    <aside class="profile-cardUser">
+        <div class="header">
+            <div class="text">
+                ZADATAK
+            </div>
+        </div>
+        <!-- bit of a bio; who are you? -->
+        <div class="column">
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Ticket.listićIme)
+                @Html.TextBoxFor(m => m.Ticket.listićIme, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Ticket.nazivPrioritet)
+                @Html.TextBoxFor(m => m.Ticket.nazivPrioritet, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Ticket.opisPogreška)
+                @Html.TextAreaFor(m => m.Ticket.opisPogreška, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Ticket.datum)
+                @Html.TextBoxFor(m => m.Ticket.datum, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+
+
+
+        </div>
+
+        <div class="column">
+
+            <!-- postaviti ulogu i naziv da se ne mogu mijenjati-->
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.zadatakIme)
+                @Html.TextBoxFor(m => m.zadatakIme, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.timID)
+                @Html.DropDownListFor(m => m.timID, new SelectList(Model.teams, "timID", "nazivTim"), new { @class = "form-control" })
+            </div>
+
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.zadatakOpis)
+                @Html.TextAreaFor(m => m.zadatakOpis, new { @class = "form-control", @id = "notAvatar" })
+            </div>
+
+
+            <form action="/action_page.php">
+                @Html.LabelFor(m => m.datum)
+                <input type="date" id="rokDo" name="rokDo" class="form-control">
+            </form>
+
+        </div>
+
+        <div>
+            <div>
+                <button type="submit" class="submitButton">Assign</button>
+            </div>
+        </div>
+
+
+    </aside>
+    <!-- that’s all folks! -->
+
+    <div class="form-group" style="visibility:hidden">
+        @Html.LabelFor(m => m.zadatakID)
+        @Html.TextBoxFor(m => m.Ticket.listićID, new { @class = "form-control", @style = "visibility: hidden"})
+    </div>
+
+}

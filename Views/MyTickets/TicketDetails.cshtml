@@ -3,42 +3,47 @@
 
 @{
     ViewBag.Title = "ViewTicket";
-    Layout = "~/Views/MyTickets/MyTicketsPartialView.cshtml";
+    Layout = "~/Views/Shared/_MainLayoutPartialView.cshtml";
 }
 
 
+<link rel="stylesheet" href="~/Content/CSS/TicketDetails.css" />
 
-    <div class="row">
-        <div class="header">
-            <div class="text">
-                TICKET DETAILS FOR TICKET #@Model.listićID
-            </div>
+<div class="row">
+    <div class="header">
+        <div class="text">
+            TICKET DETAILS FOR TICKET #@Model.listićID
         </div>
-        
-        <div class="leftColumn" id="left">
-            <div class="name">TICKET TITLE</div>
-            <div class="value"> @Model.listićIme</div>
-            <div class="name">PRIORITET </div>
-            <div class="value"> @Model.nazivPrioritet</div>
-            <div class="name"><i class="fa fa-address-card-o"></i>DESCRIPTION</div>
-            <div class="value">@Model.opisPogreška</div>
-        </div>
-
-        <div class="rightColumn" id="right">
-
-            <div class="name">SUBMITTER</div>
-            <div class="value">@Model.Username</div>
-            <div class="name">DATE</div>
-            <div class="value">@Model.datum</div>
-            <div class="name">PROJECT NAME</div>
-            <div class="value">@Model.nazivProjekta</div>
-        </div>
-
-        <div >
-            <img src="@Model.slika"
-                 alt="IMAGE"
-                 class="slika"
-              />
-        </div>
-        
     </div>
+
+    <div class="leftColumn" id="left">
+        <div class="name">TICKET TITLE</div>
+        <div class="value"> @Model.listićIme</div>
+        <div class="name">PRIORITET </div>
+        <div class="value"> @Model.nazivPrioritet</div>
+        <div class="name"><i class="fa fa-address-card-o"></i>DESCRIPTION</div>
+        <div class="value">@Model.opisPogreška</div>
+
+    </div>
+
+    <div class="rightColumn" id="right">
+
+        <div class="name">SUBMITTER</div>
+        <div class="value">@Model.Username</div>
+        <div class="name">DATE</div>
+        <div class="value">@Model.datum</div>
+        <div class="name">PROJECT NAME</div>
+        <div class="value">@Model.nazivProjekta</div>
+        <div class="name">STATUS</div>
+        <div class="value">@Model.statusName</div>
+
+    </div>
+
+    <div>
+        <img src="@Model.slika"
+             alt="IMAGE"
+             class="slika" />
+    </div>
+
+
+</div>

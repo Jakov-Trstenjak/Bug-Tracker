@@ -20,12 +20,13 @@ namespace Bug_Tracker.Controllers
         public ActionResult TicketDetails(int id)
         {
             MyTicketViewModel model = DapperORM.getSingleTicketData(id);
+            model.teams = DapperORM.getTeamData();
             return View(model);
         }
 
         public ActionResult allTicketsForProject(int id)
         {
-            List<MyTicketViewModel> model = DapperORM.getAllTickets(id);
+            List<MyTicketViewModel> model = DapperORM.getAllTicketsFromProject(id);
             return View(model);
         }
     }

@@ -116,7 +116,10 @@ namespace Bug_Tracker.Models
                 var user = HttpContext.Current.User;
                 var listOfUserID = connection.Query<int>("SELECT \"korisnikID\" FROM public.\"Korisnik\" WHERE \"email\"='"+user.Identity.GetUserName()+"'");
                 int userID = 0;
-                
+                int statusID = 1;
+                int myTeamID = DapperORM.getMyTeam(DapperORM.getUsername());
+
+
                 foreach (var item in listOfUserID)
                 {
                     userID = item;
@@ -124,7 +127,9 @@ namespace Bug_Tracker.Models
                 
                 
                 connection.Query<string>("INSERT INTO public.\"Pogreška\" VALUES("+ Ticket.Bug.BugID+",'"+Ticket.Bug.Description+"',"+Ticket.Bug.PriorityID+")");
-                connection.Query<Team>("INSERT INTO public.\"Listić\" VALUES(" +Ticket.Bug.BugID +"," +userID+","+Ticket.Bug.BugID+",'"+Ticket.TicketTitle+"','"+Ticket.Time+"',"+Ticket.projektID+ ",'"+Ticket.ImageURL + "')");
+                connection.Query<Team>("INSERT INTO public.\"Listić\" (\"listićID\",\"korisnikID\",\"pogreskaID\",\"listićIme\",\"datum\",\"projektID\",\"slika\",\"statusID\",\"timID\")VALUES(" +Ticket.Bug.BugID +"," +userID+","+Ticket.Bug.BugID+",'"+Ticket.TicketTitle+"','"+Ticket.Time+"',"+Ticket.projektID+ ",'"+Ticket.ImageURL +"',"+1+","+myTeamID+")");
+                
+                
                 System.Diagnostics.Debug.WriteLine("hi");
             };
         }
@@ -174,7 +179,7 @@ namespace Bug_Tracker.Models
 
 
 
-        public static List<MyTicketViewModel> getAllTickets(int projectId)
+        public static List<MyTicketViewModel> getAllTicketsFromProject(int projectId)
         {
             List<MyTicketViewModel> myTickets;
 
@@ -203,6 +208,40 @@ namespace Bug_Tracker.Models
             };
             return myTickets;
         }
+
+        public static List<MyTicketViewModel> getAllTickets()
+        {
+            List<MyTicketViewModel> myTickets;
+
+            using (var connection = new NpgsqlConnection("Host=localhost;Username=postgres;Password=nikola000;Database=BugTrackerDB"))
+            {
+                connection.Open();
+                var user = HttpContext.Current.User;
+                string query = @"SELECT ""Listić"".""listićID"", ""Status"".""statusName"", ""Korisnik"".""username"",""Listić"".""slika"",""Listić"".""datum"",""Listić"".""listićIme"", ""Pogreška"".""opisPogreška"",""Prioritet"".""nazivPrioritet"",""Projekt"".""nazivProjekta""
+                                     FROM ""Listić"" INNER JOIN ""Pogreška""  
+                                     ON ""Listić"".""pogreskaID"" = ""Pogreška"".""pogreskaID""
+                                     INNER JOIN ""Prioritet""
+                                     ON ""Pogreška"".""prioritetID"" = ""Prioritet"".""prioritetID""
+                                     INNER JOIN ""Korisnik""
+                                     ON ""Listić"".""korisnikID"" = ""Korisnik"".""korisnikID""
+                                     INNER JOIN ""Projekt""
+                                     ON ""Projekt"".""projektID"" = ""Listić"".""projektID""
+                                     INNER JOIN ""Status""
+                                     ON ""Status"".""statusID"" = ""Listić"".""statusID""
+                                     WHERE NOT ""Status"".""statusID""=" + 2 +"ORDER BY \"Pogreška\".\"prioritetID\" ,\"Listić\".\"statusID\" DESC";
+
+                ;
+
+                myTickets = (List<MyTicketViewModel>)connection.Query<MyTicketViewModel>(query);
+
+                //Reverse list so that the latest Tickets get displayed first
+                myTickets.Reverse();
+
+
+            };
+            return myTickets;
+        }
+
         public static List<MyTicketViewModel> getTicketData()
         {
             List<MyTicketViewModel> myTickets;
@@ -242,7 +281,7 @@ namespace Bug_Tracker.Models
             {
                 connection.Open();
                 var user = HttpContext.Current.User;
-                string query = @"SELECT ""Listić"".""listićID"",  ""Korisnik"".""username"",""Listić"".""slika"",""Listić"".""datum"",""Listić"".""listićIme"", ""Pogreška"".""opisPogreška"",""Prioritet"".""nazivPrioritet"",""Projekt"".""nazivProjekta""
+                string query = @"SELECT ""Listić"".""listićID"",  ""Korisnik"".""username"",""Listić"".""slika"",""Listić"".""datum"",""Listić"".""listićIme"",""Status"".""statusName"", ""Tim"".""nazivTim"", ""Pogreška"".""opisPogreška"",""Prioritet"".""nazivPrioritet"",""Projekt"".""nazivProjekta""
                                      FROM ""Listić"" INNER JOIN ""Pogreška""  
                                      ON ""Listić"".""pogreskaID"" = ""Pogreška"".""pogreskaID""
                                      INNER JOIN ""Prioritet""
@@ -251,6 +290,10 @@ namespace Bug_Tracker.Models
                                      ON ""Listić"".""korisnikID"" = ""Korisnik"".""korisnikID""
                                       INNER JOIN ""Projekt""
                                      ON ""Projekt"".""projektID"" = ""Listić"".""projektID""  
+                                     INNER JOIN ""Status""
+                                     ON ""Status"".""statusID""=""Listić"".""statusID""
+                                     INNER JOIN ""Tim""
+                                     ON ""Listić"".""timID"" = ""Tim"".""timID""
                                      WHERE ""Korisnik"".""email""= '" + user.Identity.GetUserName() + "'" + "AND \"Pogreška\".\"pogreskaID\"=" + id;
 
                 myTickets = (List<MyTicketViewModel>)connection.Query<MyTicketViewModel>(query);
@@ -477,6 +520,64 @@ namespace Bug_Tracker.Models
             };
             
             return myTeamID.First();
+        }
+
+
+        public static List<AssignmentViewModel> getAssignments(String username)
+        {
+            int teamID = DapperORM.getMyTeam(username);
+            var assignments = new List<AssignmentViewModel>();
+            using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
+            {
+                connection.Open();
+                var query = @"SELECT ""zadatakID"",""zadatakIme"",""zadatakOpis"",""username"" AS ""Submitter"",""nazivTim"",""datum""
+                              FROM ""Zadatak""
+                              INNER JOIN ""Tim""
+                              ON ""Zadatak"".""timID"" = ""Tim"".""timID""
+                              INNER JOIN ""Rok""
+                              ON ""Zadatak"".""rokID"" = ""Rok"".""rokID""
+                              INNER JOIN ""Korisnik""
+                              ON ""Korisnik"".""korisnikID"" = ""Zadatak"".""korisnikID""
+                              WHERE ""Tim"".""timID""=" + teamID;
+                              
+
+
+                assignments = (List<AssignmentViewModel>)connection.Query<AssignmentViewModel>(query);
+
+            };
+
+            return assignments;
+        }
+
+        public static string getUserID(string Username)
+        {
+            var name = new List<string>();
+            using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
+            {
+                connection.Open();
+
+                name = (List<string>)  connection.Query<string>("SELECT \"korisnikID\" FROM \"Korisnik\" WHERE \"username\"='"+Username+"'");
+            };
+
+            return name.First();
+        }
+
+        public static void saveAssignment(newAssignmentViewModel Assignment)
+        {
+
+            using (NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=nikola000;Database=BugTrackerDB;"))
+            {
+                connection.Open();
+
+                connection.Query<string>("INSERT INTO \"Rok\" VALUES("+Assignment.zadatakID+",'"+Assignment.rokDo+"')");
+
+                string query = @"INSERT INTO ""Zadatak"" VALUES(" + Assignment.zadatakID + "," + Assignment.timID + "," + Assignment.zadatakID + ",'" + Assignment.zadatakOpis + "'," + DapperORM.getUserID(Assignment.username)+ ",'" + Assignment.zadatakIme + "')";
+                connection.Query<string>(query);
+                
+            };
+
+          
+
         }
 
     }

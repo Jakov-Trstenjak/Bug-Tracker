@@ -33,6 +33,8 @@ namespace Bug_Tracker.Models
 
         public Bug Bug { get; set; }
 
+        public int teamID { get; set; }
+
 
         public Ticket()
         {
