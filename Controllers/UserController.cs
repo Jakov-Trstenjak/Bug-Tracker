@@ -97,7 +97,9 @@ namespace Bug_Tracker.Controllers
         
         public  ActionResult Assignments()
         {
-            return View();
+
+            List<AssignmentViewModel> tickets = DapperORM.getAssignments(DapperORM.getUsername());
+            return View(tickets);
         }
 
     
