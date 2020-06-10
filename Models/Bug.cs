@@ -14,6 +14,7 @@ namespace Bug_Tracker.Models
         public  int BugID { get; private set; }
     
         [Required]
+        [Display(Name = "Opis")]
         public string Description { get; set; }
 
         [Display(Name = "Prioritet")]

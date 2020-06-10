@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_MainLayoutPartialView.cshtml";
 }
 
-<h3>My Team: @Model[0].teamName</h3>
+<h3>Moj Tim: @Model[0].teamName</h3>
 
 
 
@@ -13,10 +13,10 @@
     <table id="myTable">
         <tr id="headerOfTable">
             <th>AVATAR</th>
-            <th>USERNAME</th>
-            <th>ROLE</th>
+            <th>KORISNIČKO IME</th>
+            <th>ULOGA</th>
             <th>EMAIL</th>
-            <th>TICKETS COMMITED</th>
+            <th>LISTIĆA NAPISANO</th>
         </tr>
         @foreach (var item in Model)
         {

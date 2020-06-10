@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_MainLayoutPartialView.cshtml";
 }
 
-<h3>Dashboard</h3>
+<h3>Kontrolna ploča</h3>
 <html>
 
 
@@ -15,7 +15,7 @@
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
-                ['Priorities', 'Tickets by priority'],
+                ['Prioriteti', 'Listići prema prioritetu'],
                 ['NISKI', @Model[0]],
                 ['SREDNJI', @Model[1]],
                 ['VISOKI', @Model[2]],
@@ -23,7 +23,7 @@
             ]);
 
             var options = {
-                title: 'Tickets by Priority',
+                title: 'Listići prema prioritetu',
                 pieHole: 0.5,
             };
 

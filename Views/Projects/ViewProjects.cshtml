@@ -6,17 +6,17 @@
     Layout = "~/Views/Shared/_MainLayoutPartialView.cshtml";
 }
 
-<h2>Projects</h2>
+<h3>Projekti</h3>
 
 
 <div>
     <table id="myTable" width="1300px">
         <tr id="headerOfTable">
             <th style="width:80px">ID</th>
-            <th style="width:300px">TITLE</th>
-            <th style="width:600px">DESCRIPTION</th>
-            <th style="width:130px">PROJECT STARTED</th>
-            <th style="width:100px">TICKETS</th>
+            <th style="width:300px">NAZIV</th>
+            <th style="width:600px">OPIS</th>
+            <th style="width:130px">DATUM STVARANJA</th>
+            <th style="width:100px">LISTIĆI</th>
         </tr>
         @foreach (var item in Model)
         {
