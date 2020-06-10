@@ -12,27 +12,27 @@
 <div class="row">
     <div class="header">
         <div class="text">
-            TICKET DETAILS FOR TICKET #@Model.listićID
+            DETALJI LISTIĆA #@Model.listićID
         </div>
     </div>
 
     <div class="leftColumn" id="left">
-        <div class="name">TICKET TITLE</div>
+        <div class="name">NAZIV</div>
         <div class="value"> @Model.listićIme</div>
-        <div class="name">PRIORITET </div>
+        <div class="name">PRIORITET</div>
         <div class="value"> @Model.nazivPrioritet</div>
-        <div class="name"><i class="fa fa-address-card-o"></i>DESCRIPTION</div>
+        <div class="name"><i class="fa fa-address-card-o"></i>OPIS</div>
         <div class="value">@Model.opisPogreška</div>
 
     </div>
 
     <div class="rightColumn" id="right">
 
-        <div class="name">SUBMITTER</div>
+        <div class="name">PODNOSITELJ</div>
         <div class="value">@Model.Username</div>
-        <div class="name">DATE</div>
+        <div class="name">DATUM</div>
         <div class="value">@Model.datum</div>
-        <div class="name">PROJECT NAME</div>
+        <div class="name">NAZIV PROJEKTA</div>
         <div class="value">@Model.nazivProjekta</div>
         <div class="name">STATUS</div>
         <div class="value">@Model.statusName</div>
@@ -41,7 +41,7 @@
 
     <div>
         <img src="@Model.slika"
-             alt="IMAGE"
+             alt="slika"
              class="slika" />
     </div>
 

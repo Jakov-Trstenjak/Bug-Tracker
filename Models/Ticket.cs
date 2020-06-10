@@ -17,14 +17,15 @@ namespace Bug_Tracker.Models
         [Required]
         [MaxLength(50)]
         [MinLength(3)]
-        [Display(Name ="Title")]
+        [Display(Name ="Naziv")]
         public string TicketTitle { get; set; }
 
         public  string UserID { get; set; }
-        
 
+        [Display(Name = "Vrijeme")]
         public string Time { get; set; }
 
+        [Display(Name = "URL slike")]
         public string ImageURL { get; set; }
 
         [Required]

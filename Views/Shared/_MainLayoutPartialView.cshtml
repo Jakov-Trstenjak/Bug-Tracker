@@ -48,55 +48,55 @@
 
                 <li>
                     <a href="@Url.Action("Dashboard", "User", new { id = userName })">
-                        <i class="fa fa-dashboard"></i> Dashboard
+                        <i class="fa fa-dashboard"></i> Kontrolna ploča
                     </a>
                 </li>
 
                 <li>
                     <a href="@Url.Action("ViewProjects", "Projects", new { id = userName })">
-                        <i class="fas fa-project-diagram"></i> Projects
+                        <i class="fas fa-project-diagram"></i> Projekti
                     </a>
                 </li>
 
                 <li>
                     <a href="@Url.Action("ReportABug", "User", new { id = userName })">
-                        <i class="fa fa-bug"></i> Report a Bug
+                        <i class="fa fa-bug"></i> Prijava pogreške
                     </a>
                 </li>
 
                 <li>
                     <a href="@Url.Action("MyTickets", "User", new { id = userName })">
-                        <i class="fa fa-ticket"></i> My Tickets
+                        <i class="fa fa-ticket"></i> Moji listići
                     </a>
                 </li>
 
                 <!-- Enable this when Team will have chat and other functionalities-->
-                @if (DapperORM.checkIfAdminOrManager(userName)){
+               
                     <li>
                         <a href="@Url.Action("Assignments", "User",new {  id = userName })">
-                            <i class="fas fa-tasks"></i> Assignments
+                            <i class="fas fa-tasks"></i> Zadatci
                         </a>
                     </li>
-                }
+              
 
 
                 <li>
                     <a href="@Url.Action("MyTeam", "User", new { id = userName })">
-                        <i class="fa fa-users"></i> My Team
+                        <i class="fa fa-users"></i> Moj Tim
                     </a>
                 </li>
 
                 @if (DapperORM.checkIfAdmin(userName)) {
                 <li>
                     <a href="@Url.Action("ManageUsers", "User",new {  id = userName })">
-                        <i class="fas fa-user-cog"></i> Manage Users
+                        <i class="fas fa-user-cog"></i> Korisnici
                     </a>
                 </li>
                 }
 
                 <li>
                     <a href="@Url.Action("UserProfile", "User",new {  id = userName})">
-                        <i class="fas fa-user-edit"></i> User Profile
+                        <i class="fas fa-user-edit"></i> Profil
                     </a>
                 </li>
 
@@ -107,7 +107,7 @@
                         @Html.AntiForgeryToken()
 
                         <a href="javascript:document.getElementById('logoutForm').submit()" id="signOut">
-                            <i class="fa fa-power-off" id="faSignOut"></i>Sign Out
+                            <i class="fa fa-power-off" id="faSignOut"></i>Odjava
                         </a>
 
                     }
@@ -123,7 +123,7 @@
                 <div class="container-fluid" >
                     <ul class="nav navbar-nav navbar-right">
 
-                        <li>
+                        @*<li>
                             <form method="get" action="/search" id="search">
                                 <input name="q" type="text" size="40" placeholder="Search..." />
                             </form>
@@ -132,9 +132,9 @@
                             <a href="#">
                                 <i class="fas fa-bell" style="font-size:20px" > </i>
                             </a>
-                        </li>
+                        </li>*@
                         <li id="HelloUser">
-                            @Html.ActionLink("Hello " + DapperORM.getUsername(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                            @Html.ActionLink("Pozdrav " + DapperORM.getUsername(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                         </li>
 
 

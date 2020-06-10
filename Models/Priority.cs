@@ -12,6 +12,8 @@ namespace Bug_Tracker.Models
     {
         [Required]
         public int PriorityID { get; set; }
+
+        [Display(Name ="Prioritet")]
         public string   PriorityName { get; set; }
     }
 }

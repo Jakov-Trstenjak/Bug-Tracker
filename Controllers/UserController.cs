@@ -55,6 +55,11 @@ namespace Bug_Tracker.Controllers
             return RedirectToAction("UserProfile", "User", new { id =username });
         }
 
+        public ActionResult ViewAllUsers()
+        {
+            userViewModel currentUser = DapperORM.GetSingleUser(username);
+            return View(currentUser);
+        }
 
         public ActionResult ManageUsers(string Username)
         {

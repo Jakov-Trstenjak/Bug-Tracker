@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="~/Content/CSS/UserProfile.css" />
 
 
-<h3>Edit User: @Model.username</h3>
+<h3>Ažuriraj Korisnika: @Model.username</h3>
 
 
 <!-- this is the markup. you can change the details (your own name, your own avatar etc.) but don’t change the basic structure! -->
@@ -72,13 +72,13 @@
     </div>
 
     <div>
-        <button type="submit" class="submitButton">Update</button>
+        <button type="submit" class="submitButton">Ažuriraj</button>
     </div>
 
     <div >
         <a href="@Url.Action("ManageUsers", "User",new { id = Bug_Tracker.Models.DapperORM.getUsername() })">
             <div class="backLink">
-                Back to user list
+                Natrag na listu korisnika
             </div>
         </a>
     </div>

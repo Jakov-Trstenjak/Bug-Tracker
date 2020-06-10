@@ -15,7 +15,7 @@ namespace Bug_Tracker.ViewModels
         public int ulogaID { get; set; }
 
 
-        [Display(Name = "Username")]
+        [Display(Name = "Korisničko ime")]
         public string username { get; set; }
 
         [Display(Name = "Lozinka")]

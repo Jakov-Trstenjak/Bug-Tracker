@@ -5,13 +5,13 @@
     Layout = "~/Views/Shared/_MainLayoutPartialView.cshtml";
 }
 
-<h2>Manage Users</h2>
+<h2>Upravljaj korisnicima</h2>
 
 
 <div>
     <table id="myTable" width="740px">
         <tr id="headerOfTable">
-            <th style="width:200px">USERNAME</th>
+            <th style="width:200px">KORISNIČKO IME</th>
             <th style="width:200px">EMAIL</th>
             <th style="width:200px">ULOGA</th>
             <th style="width:100px">TIM</th>
@@ -31,13 +31,13 @@
                 </div>
             </a>
         </td>
-        <td style="width:20px">
+        @*<td style="width:20px">
             <a href="@Url.Action("FullUserDetails", "Admin",new { username = item.username})">
                 <div style="text-align:center">
                     <i class="fa fa-eye" aria-hidden="true"></i>
                 </div>
             </a>
-        </td>
+        </td>*@
         
     </tr>
         }

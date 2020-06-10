@@ -187,7 +187,7 @@ namespace Bug_Tracker.Models
             {
                 connection.Open();
                 var user = HttpContext.Current.User;
-                string query = @"SELECT ""Listić"".""listićID"",  ""Korisnik"".""username"",""Listić"".""slika"",""Listić"".""datum"",""Listić"".""listićIme"", ""Pogreška"".""opisPogreška"",""Prioritet"".""nazivPrioritet"",""Projekt"".""nazivProjekta""
+                string query = @"SELECT ""Listić"".""listićID"",  ""Korisnik"".""username"",""Listić"".""slika"",""Listić"".""datum"",""Listić"".""listićIme"", ""Pogreška"".""opisPogreška"",""Prioritet"".""nazivPrioritet"",""Projekt"".""nazivProjekta"",""Status"".""statusName""
                                      FROM ""Listić"" INNER JOIN ""Pogreška""  
                                      ON ""Listić"".""pogreskaID"" = ""Pogreška"".""pogreskaID""
                                      INNER JOIN ""Prioritet""
@@ -196,6 +196,8 @@ namespace Bug_Tracker.Models
                                      ON ""Listić"".""korisnikID"" = ""Korisnik"".""korisnikID""
                                      INNER JOIN ""Projekt""
                                      ON ""Projekt"".""projektID"" = ""Listić"".""projektID""
+                                     INNER JOIN ""Status""
+                                     ON ""Listić"".""statusID"" = ""Status"".""statusID""
                                      WHERE ""Listić"".""projektID""="+projectId;
 ;
 
@@ -228,7 +230,7 @@ namespace Bug_Tracker.Models
                                      ON ""Projekt"".""projektID"" = ""Listić"".""projektID""
                                      INNER JOIN ""Status""
                                      ON ""Status"".""statusID"" = ""Listić"".""statusID""
-                                     WHERE NOT ""Status"".""statusID""=" + 2 +"ORDER BY \"Pogreška\".\"prioritetID\" ,\"Listić\".\"statusID\" DESC";
+                                     WHERE ""Status"".""statusID""=" + 1 +"ORDER BY \"Pogreška\".\"prioritetID\" ,\"Listić\".\"statusID\" DESC";
 
                 ;
 
@@ -307,7 +309,7 @@ namespace Bug_Tracker.Models
             {
                 connection.Open();
 
-                string query = @"INSERT INTO public.""Korisnik"" (""Avatar"",""korisnikID"",""username"",""lozinka"",""email"",""timID"",""ulogaID"") VALUES('"+ newUser.Avatar+"',"+ newUser.UserID+",'"+newUser.Username+"','"+ newUser.Password+"','"+ newUser.Email+"',1,1)";
+                string query = @"INSERT INTO public.""Korisnik"" (""Avatar"",""korisnikID"",""username"",""lozinka"",""email"",""timID"",""ulogaID"",""mjestoID"") VALUES('"+ newUser.Avatar+"',"+ newUser.UserID+",'"+newUser.Username+"','"+ newUser.Password+"','"+ newUser.Email+"',1,1,10000)";
                 var saveUser = connection.Query<bool>(query);
                 
             };
@@ -540,6 +542,7 @@ namespace Bug_Tracker.Models
                               ON ""Korisnik"".""korisnikID"" = ""Zadatak"".""korisnikID""
                               WHERE ""Tim"".""timID""=" + teamID;
                               
+                              
 
 
                 assignments = (List<AssignmentViewModel>)connection.Query<AssignmentViewModel>(query);
@@ -570,8 +573,9 @@ namespace Bug_Tracker.Models
                 connection.Open();
 
                 connection.Query<string>("INSERT INTO \"Rok\" VALUES("+Assignment.zadatakID+",'"+Assignment.rokDo+"')");
+                connection.Query<string>("UPDATE \"Listić\" SET \"statusID\"="+3 +"WHERE \"listićID\"="+Assignment.zadatakID);
 
-                string query = @"INSERT INTO ""Zadatak"" VALUES(" + Assignment.zadatakID + "," + Assignment.timID + "," + Assignment.zadatakID + ",'" + Assignment.zadatakOpis + "'," + DapperORM.getUserID(Assignment.username)+ ",'" + Assignment.zadatakIme + "')";
+                string query = @"INSERT INTO ""Zadatak"" VALUES(" + Assignment.zadatakID + "," + Assignment.timID + "," + Assignment.zadatakID + ",'" + Assignment.zadatakOpis + "'," + DapperORM.getUserID(Assignment.username)+ ",'" + Assignment.zadatakIme +"'," +Assignment.zadatakID+")";
                 connection.Query<string>(query);
                 
             };

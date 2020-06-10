@@ -11,10 +11,10 @@
 {
     var counter = 0; // count to display only 3 tickets as cards, other tickets will be displayed as a table.
 
-    <h3>My Latest Tickets</h3>
+    <h3>Posljednji listići</h3>
     if (Model.Count == 0)
     {
-        <p>You haven't committed any Tickets yet.</p>
+        <p>Još niste napisali niti jedan listić.</p>
     }
 
     foreach (var item in Model)
@@ -35,15 +35,15 @@
                             </div>
                             <div class="card-stats">
                                 <div class="stat">
-                                    <div class="value">Ticket ID</div>
+                                    <div class="value">Listić ID</div>
                                     <div class="type" id="type">@item.listićID</div>
                                 </div>
                                 <div class="stat border">
-                                    <div class="value">Priority</div>
+                                    <div class="value">Prioritet</div>
                                     <div class="type" id="type">@item.nazivPrioritet</div>
                                 </div>
                                 <div class="stat">
-                                    <div class="value">Date</div>
+                                    <div class="value">Datum</div>
                                     <div class="type" id="type">@date[0]</div>
                                 </div>
                             </div>
@@ -57,16 +57,16 @@
     }
 
 
-    <h3>All My Tickets</h3>
+    <h3>Svi moji listići</h3>
 
 <div>
     <table id="myTable">
         <tr id="headerOfTable">
-            <th>TICKET ID</th>
-            <th>TITLE</th>
-            <th>PRIORITY</th>
-            <th>CREATED</th>
-            <th>PROJECT NAME</th>
+            <th>LISTIĆ ID</th>
+            <th>NAZIV</th>
+            <th>PRIORITET</th>
+            <th>DATUM STVARANJA</th>
+            <th>PROJEKT</th>
         </tr>
         @foreach (var item in Model)
         {
@@ -80,7 +80,7 @@
                 <td>
                     <a href="@Url.Action("TicketDetails", "MyTickets",new { id = item.listićID })">
                         <div>
-                            More details
+                            Više detalja
                         </div>
                     </a>
                 </td>

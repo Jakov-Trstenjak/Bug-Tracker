@@ -16,11 +16,11 @@
 <div>
     <table id="myTable">
         <tr id="headerOfTable">
-            <th>TICKET ID</th>
-            <th>TITLE</th>
-            <th>PRIORITY</th>
-            <th>CREATED</th>
-            <th>PROJECT NAME</th>
+            <th>ID</th>
+            <th>NAZIV</th>
+            <th>PRIORITET</th>
+            <th>DATUM STVARANJA</th>
+            <th>PROJEKT</th>
         </tr>
         @foreach (var item in Model)
         {
@@ -34,7 +34,7 @@
                 <td>
                     <a href="@Url.Action("TicketDetails", "MyTickets",new { id = item.listićID })">
                         <div>
-                            More details
+                            Više detalja
                         </div>
                     </a>
                 </td>
